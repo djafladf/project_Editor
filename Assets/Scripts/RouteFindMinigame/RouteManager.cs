@@ -6,17 +6,20 @@ public class RouteManager : MonoBehaviour
 {
     Stack<Route> routes = new Stack<Route>();
 
-    // 현재 총 길이
-    public float totalLength = 0f;
-
     // 시작 지점
-    public Vector2 startPoint;
+    public Point startPoint;
+    // 총 길이 제한
+    public float lengthLimit;
+    // 감시관 타입
+    public string type;
+    
 
     // 현재 위치
     [SerializeField]
-    private Vector2 currentPoint;
-    // 총 길이 제한
-    public float lengthLimit;
+    private Point currentPoint;
+    // 현재 총 길이
+    public float totalLength = 0f;
+
 
     // 새로운 경로 추가 : 동선 하나 긋기
     public void AddRoute(Route newRoute)
