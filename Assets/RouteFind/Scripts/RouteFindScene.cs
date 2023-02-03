@@ -29,22 +29,22 @@ public class RouteFindScene : MonoBehaviour
         pointList = new List<Point>();
         routeList = new List<Route>();
 
-        // 점들 생성
-        for (int i = 0; i < currentStageData.pointDataList.Length; i++)
-        {
-            Point point = Instantiate(pointPrefab, currentStageData.pointDataList[i].position, Quaternion.identity);
-            pointList.Add(point);
-        }
-        // 경로 생성
-        for (int i = 0; i < currentStageData.routeDataList.Count; i++)
-        {
-            // TODO: 자동으로 생성 각도 계산하여 적용되도록
-            Route route = Instantiate(routePrefab, currentStageData.routeDataList[i].startPoint.position, Quaternion.identity);
-            route.startPoint = pointList[currentStageData.routeDataList[i].startPointIndex];
-            route.endPoint = pointList[currentStageData.routeDataList[i].endPointIndex];
-            route.length = currentStageData.routeDataList[i].length;
-            routeList.Add(route);
-        }
+        //// 점들 생성
+        //for (int i = 0; i < currentStageData.pointDataList.Length; i++)
+        //{
+        //    Point point = Instantiate(pointPrefab, currentStageData.pointDataList[i].position, Quaternion.identity);
+        //    pointList.Add(point);
+        //}
+        //// 경로 생성
+        //for (int i = 0; i < currentStageData.routeDataList.Count; i++)
+        //{
+        //    // TODO: 자동으로 생성 각도 계산하여 적용되도록
+        //    Route route = Instantiate(routePrefab, currentStageData.routeDataList[i].startPoint.position, Quaternion.identity);
+        //    route.startPoint = pointList[currentStageData.routeDataList[i].startPointIndex];
+        //    route.endPoint = pointList[currentStageData.routeDataList[i].endPointIndex];
+        //    route.length = currentStageData.routeDataList[i].length;
+        //    routeList.Add(route);
+        //}
 
         // TODO: 감시관 오브젝트에 시작 길이와 총 길이 제한 입력하기
     }
