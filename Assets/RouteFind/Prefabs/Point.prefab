@@ -235,6 +235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5341114424976850930}
+  - component: {fileID: 4890604222345580775}
   m_Layer: 0
   m_Name: Point
   m_TagString: Untagged
@@ -259,6 +260,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4890604222345580775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2553285789532305598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7f7470ef496c942bb79f78ac919a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  routes: []
+  position: {x: 0, y: 0}
+  type: 
 --- !u!1 &3297143878229013254
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +333,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1144034011
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &4436574772672661232
@@ -370,7 +386,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4747275780334230474}
   - component: {fileID: 5005042986741538459}
-  - component: {fileID: 5933109431326383964}
   m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
@@ -431,9 +446,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1418344049
+  m_SortingLayer: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -445,18 +460,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5933109431326383964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4539167209071932975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a7f7470ef496c942bb79f78ac919a4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  routes: []
-  position: {x: 0, y: 0}
-  type: 

@@ -15,10 +15,9 @@ public class RouteManager : MonoBehaviour
     
 
     // 현재 위치
-    [SerializeField]
     private Point currentPoint;
     // 현재 총 길이
-    public float totalLength = 0f;
+    private float totalLength = 0f;
 
 
     // 새로운 경로 추가 : 동선 하나 긋기

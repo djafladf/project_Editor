@@ -13,8 +13,10 @@ public class RouteFindScene : MonoBehaviour
     public GameObject routePrefab;
 
     // 현재 스테이지 데이터
-    [SerializeField]
     private Object currentStageData;
+
+    // 현재 활성화된 감시관 오브젝트
+    public RouteManager currentWarden;
 
     private List<Point> pointList;
     private List<Route> routeList;

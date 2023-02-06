@@ -8,4 +8,9 @@ public class Point : MonoBehaviour
     public Vector2 position;
 
     public string type;
+
+    public void moveRoute()
+    {
+
+    }
 }

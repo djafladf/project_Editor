@@ -43,6 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: street
+    uniqueID: 1418344049
+    locked: 0
   - name: UI
     uniqueID: 1144034011
     locked: 0
