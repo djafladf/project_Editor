@@ -16,17 +16,18 @@ public class RouteFindScene : MonoBehaviour
     private Object currentStageData;
 
     // 현재 활성화된 감시관 오브젝트
-    public RouteManager currentWarden;
+    public Warden currentWarden;
 
-    private List<Point> pointList;
-    private List<Route> routeList;
+    // TODO: private로 변경
+    public List<Point> pointList;
+    public List<Route> routeList;
 
     void Start() {
         Scene scene = SceneManager.GetActiveScene();
         // TODO: 신 매개변수 따로 설정 필요 (buildIndex 말고)
-        int stageNumber = scene.buildIndex;
-        currentStageData = stageDataList[stageNumber];
-
+        int stageNumber = 0;
+        stageNumber = scene.buildIndex;
+        //currentStageData = stageDataList[stageNumber];
 
         pointList = new List<Point>();
         routeList = new List<Route>();
@@ -49,5 +50,21 @@ public class RouteFindScene : MonoBehaviour
         //}
 
         // TODO: 감시관 오브젝트에 시작 길이와 총 길이 제한 입력하기
+    }
+
+    public Route getRoute(Point startPoint, Point endPoint)
+    {
+        Route result = null;
+        foreach(Route iter in routeList)
+        {
+            if(iter.startPoint == startPoint)
+                if(iter.endPoint == endPoint)
+                {
+                    result = iter;
+                    break;
+                }
+        }
+
+        return result;
     }
 }

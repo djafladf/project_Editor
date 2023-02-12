@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RouteManager : MonoBehaviour
+public class Warden : MonoBehaviour
 {
-    Stack<Route> routes = new Stack<Route>();
-
     // 시작 지점
     public Point startPoint;
     // 총 길이 제한
@@ -13,15 +11,16 @@ public class RouteManager : MonoBehaviour
     // 감시관 타입
     public string type;
     
+    Stack<Route> routes = new Stack<Route>();
 
     // 현재 위치
-    private Point currentPoint;
+    public Point currentPoint;
     // 현재 총 길이
     private float totalLength = 0f;
 
 
     // 새로운 경로 추가 : 동선 하나 긋기
-    public void AddRoute(Route newRoute)
+    public int AddRoute(Route newRoute)
     {
         // 첫 시작 지점 지정 : 루트의 첫 시작일 시 현재 위치를 시작지점으로 지정
         if (routes.Count == 0)
@@ -36,7 +35,7 @@ public class RouteManager : MonoBehaviour
             if (newRoute.startPoint != currentPoint)
             {
                 Debug.Log("Route Incorrect : Start point doesn't match.");
-                return;
+                return 1;
             }
         }
 
@@ -45,13 +44,15 @@ public class RouteManager : MonoBehaviour
         {
             // 길이 제한 초과
             Debug.Log("Route not Available : Length limit exceeded.");
-            return;
+            return 1;
         }
 
         // 루트 추가 : 스택에 추가, 길이&위치 갱신
         routes.Push(newRoute);
         totalLength += newRoute.length;
         currentPoint = newRoute.endPoint;
+        transform.Translate(currentPoint.position);
+        return 0;
     }
 
     // 경로 삭제 : 동선 하나 취소, 뒤로 감기
