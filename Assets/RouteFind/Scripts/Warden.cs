@@ -18,8 +18,18 @@ public class Warden : MonoBehaviour
     // 현재 총 길이
     private float totalLength = 0f;
 
+    private void Awake()
+    {
+        currentPoint = startPoint;
+        transform.Translate(startPoint.position);
+    }
 
-    // 새로운 경로 추가 : 동선 하나 긋기
+
+    /// <summary>
+    /// 새로운 경로 추가 : 동선 하나 긋기
+    /// </summary>
+    /// <param name="newRoute">추가할 경로</param>
+    /// <returns>추가 완료시 0 반환 길이 제한 초과 : 1, 시작 위치 불일치 : -1</returns>
     public int AddRoute(Route newRoute)
     {
         // 첫 시작 지점 지정 : 루트의 첫 시작일 시 현재 위치를 시작지점으로 지정
@@ -35,7 +45,7 @@ public class Warden : MonoBehaviour
             if (newRoute.startPoint != currentPoint)
             {
                 Debug.Log("Route Incorrect : Start point doesn't match.");
-                return 1;
+                return -1;
             }
         }
 
@@ -48,6 +58,7 @@ public class Warden : MonoBehaviour
         }
 
         // 루트 추가 : 스택에 추가, 길이&위치 갱신
+        Debug.Log("Move new Position :", newRoute);
         routes.Push(newRoute);
         totalLength += newRoute.length;
         currentPoint = newRoute.endPoint;
