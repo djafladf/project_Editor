@@ -15,6 +15,7 @@ public class WardenManager : MonoBehaviour
     void Update()
     {
         // Check if the user clicked on a Warden in the UI
+        // TODO: Add Warden List UI to activate each warden
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -37,13 +38,16 @@ public class WardenManager : MonoBehaviour
             if (hit.collider != null)
             {
                 Point point = hit.collider.GetComponent<Point>();
-                if (point != null && point.connectedRoutes != null && point.connectedRoutes.Count > 0)
+                if (point != null)
                 {
-                    Route route = point.connectedRoutes[0];
-                    if (currentWarden != null && currentWarden.lengthLimit >= route.length)
+                    if(point.connectedRoutes != null && point.connectedRoutes.Count > 0)
                     {
-                        // Move the current Warden to the selected Point
-                        currentWarden.transform.position = point.transform.position;
+                        if (currentWarden != null)
+                        {
+                            Route route = GameObject.FindObjectOfType<RouteManager>().getRoute(currentWarden.GetCurrentPoint(), point);
+                            // Move the current Warden to the selected Point
+                            currentWarden.Move(route);
+                        }
                     }
                 }
             }

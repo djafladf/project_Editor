@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Route : MonoBehaviour
 {
-    public float length;
-    public bool mustGo;
+    public int length;
+    public string type;
+
+    public List<Point> points;
 }
