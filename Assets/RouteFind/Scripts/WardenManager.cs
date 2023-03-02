@@ -16,19 +16,19 @@ public class WardenManager : MonoBehaviour
     {
         // Check if the user clicked on a Warden in the UI
         // TODO: Add Warden List UI to activate each warden
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if (hit.collider != null)
-            {
-                Warden warden = hit.collider.GetComponent<Warden>();
-                if (warden != null && wardens.Contains(warden))
-                {
-                    currentWarden = warden;
-                }
-            }
-        }
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //     RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+        //     if (hit.collider != null)
+        //     {
+        //         Warden warden = hit.collider.GetComponent<Warden>();
+        //         if (warden != null && wardens.Contains(warden))
+        //         {
+        //             currentWarden = warden;
+        //         }
+        //     }
+        // }
 
         // Check if the user clicked on a Point to move the current Warden
         if (Input.GetMouseButtonDown(0))
@@ -37,17 +37,16 @@ public class WardenManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
             if (hit.collider != null)
             {
+                Debug.Log("Collider Hit!");
                 Point point = hit.collider.GetComponent<Point>();
                 if (point != null)
                 {
-                    if(point.connectedRoutes != null && point.connectedRoutes.Count > 0)
+                    Debug.Log("Hit Point : " + point.ToString());
+                    if (currentWarden != null)
                     {
-                        if (currentWarden != null)
-                        {
-                            Route route = GameObject.FindObjectOfType<RouteManager>().getRoute(currentWarden.GetCurrentPoint(), point);
-                            // Move the current Warden to the selected Point
-                            currentWarden.Move(route);
-                        }
+                        Route route = GameObject.FindObjectOfType<RouteManager>().getRoute(currentWarden.GetCurrentPoint(), point);
+                        // Move the current Warden to the selected Point
+                        currentWarden.Move(route);
                     }
                 }
             }

@@ -11,6 +11,7 @@ public class Warden : MonoBehaviour
 
     void Start()
     {
+        patrolRoutes = new Stack<Route>();
         Reset();
     }
 
