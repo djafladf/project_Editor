@@ -37,19 +37,25 @@ public class WardenManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
             if (hit.collider != null)
             {
-                Debug.Log("Collider Hit!");
                 Point point = hit.collider.GetComponent<Point>();
                 if (point != null)
                 {
                     Debug.Log("Hit Point : " + point.ToString());
                     if (currentWarden != null)
                     {
-                        Route route = GameObject.FindObjectOfType<RouteManager>().getRoute(currentWarden.GetCurrentPoint(), point);
+                        Route route = GameObject.FindObjectOfType<RouteManager>().GetRoute(currentWarden.GetCurrentPoint(), point);
                         // Move the current Warden to the selected Point
-                        currentWarden.Move(route);
+                        currentWarden.MoveRoute(route);
                     }
                 }
             }
+        }
+
+        // Check if the user clicked Revert 
+        if (Input.GetMouseButtonDown(1))
+        {
+            Debug.Log(currentWarden.ToString() + ": route Revert");
+            currentWarden.RevertRoute();
         }
     }
 }

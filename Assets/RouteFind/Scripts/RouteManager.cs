@@ -7,8 +7,16 @@ public class RouteManager : MonoBehaviour
     public GameObject feedbackTextPrefab;
     private WardenManager wardenManager;
 
-    public Route getRoute(Point point1, Point point2)
+    /// <summary>
+    /// 두 지점을 잇는 경로 반환
+    /// </summary>
+    /// <param name="point1"></param>
+    /// <param name="point2"></param>
+    /// <returns>경로 반환, 경로가 없거나 두 지점이 같으면 null 반환</returns>
+    public Route GetRoute(Point point1, Point point2)
     {
+        if (point1 == point2)
+            return null;
         foreach (Route iter in routes)
         {
             if (iter.points.Contains(point1) && iter.points.Contains(point2))

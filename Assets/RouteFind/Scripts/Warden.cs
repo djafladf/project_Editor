@@ -12,7 +12,7 @@ public class Warden : MonoBehaviour
     void Start()
     {
         patrolRoutes = new Stack<Route>();
-        Reset();
+        ResetRoute();
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public class Warden : MonoBehaviour
     /// <summary>
     ///  경로를 따라 이동
     /// </summary>
-    public void Move(Route route)
+    public void MoveRoute(Route route)
     {
         if (CanMove(route))
         {
@@ -67,13 +67,12 @@ public class Warden : MonoBehaviour
             patrolRoutes.Push(route);
             return;
         }
-        Debug.Log(this.ToString() + ": Move Route Failed");
     }
 
     /// <summary>
     ///  하나 이전 위치로 이동
     /// </summary>
-    public void Revert()
+    public void RevertRoute()
     {
         if(patrolRoutes.Count > 0)
         {
@@ -90,7 +89,7 @@ public class Warden : MonoBehaviour
     ///  경로 초기화
     /// - 남은 길이 초기화, 첫 위치로 돌아가기, 경로 스택 클리어
     /// </summary>
-    public void Reset()
+    public void ResetRoute()
     {
         remainingLength = totalLengthLimit;
         currentPoint = transform.parent.GetComponent<Point>();
