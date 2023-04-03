@@ -14,6 +14,7 @@ TagManager:
   - Detail
   - Trace
   - Wall
+  - Belt
   layers:
   - Default
   - TransparentFX
