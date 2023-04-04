@@ -4,31 +4,16 @@ using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BeltClick : MonoBehaviour
+public class Belts : MonoBehaviour
 {
+    public bool IsInstalled = false;
+    public GameObject InLayer;
     Vector3 AnchorGap;
-    void Start()
+    void Awake()
     {
         if (GetComponent<EventTrigger>() == null) gameObject.AddComponent<EventTrigger>();
         EventTrigger eventTrigger = GetComponent<EventTrigger>();
-        MyUi.AddEvent(eventTrigger, EventTriggerType.BeginDrag, DragOn);
-        MyUi.AddEvent(eventTrigger, EventTriggerType.Drag, DragPointer);
         MyUi.AddEvent(eventTrigger,EventTriggerType.PointerClick,ClickPointer);
-    }
-    void DragOn(PointerEventData Data)
-    {
-        DragSetting();
-    }
-
-    void DragPointer(PointerEventData data)
-    {
-        MyUi.DragUI(gameObject, AnchorGap);
-    }
-
-    void DragSetting()
-    {
-        AnchorGap = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.parent.position;
-        AnchorGap.z = 0;
     }
     void ClickPointer(PointerEventData data)
     {

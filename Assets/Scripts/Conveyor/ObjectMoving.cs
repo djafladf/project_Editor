@@ -23,9 +23,8 @@ public class ObjectMoving : MonoBehaviour
     IEnumerator MovingObj(Transform Belt)
     {
         Transform a1 = Belt.GetChild(0);
-        for (; Vector3.Magnitude(transform.position - a1.position) > 0.5f;)    // 위치 보정
+        for (; Vector3.Magnitude(transform.position - a1.position) > 0.5f;)    // 위치 보정(항상 가운대로 움직임)
         {
-            Debug.Log(Vector3.Magnitude(transform.position - a1.position));
             transform.Translate((a1.position - transform.position).normalized);
             yield return new WaitForSeconds(0.01f);
         }
