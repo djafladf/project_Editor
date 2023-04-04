@@ -56,8 +56,7 @@ public class InstallIcon : MonoBehaviour
         {
             Debug.Log(IM.CurLay.name);
             Oup.transform.position = IM.CurLay.transform.position;
-            Oup.GetComponent<Belts>().InLayer = IM.CurLay;
-            Oup.GetComponent<Belts>().IsInstalled = true;
+            Oup.GetComponent<Installation>().InLayer = IM.CurLay;
             IM.CurLay.GetComponent<InstallLayer>().OutPointer(null);
             IM.CurLay.GetComponent<InstallLayer>().IsInstall = true;
             IM.CurLay = null;

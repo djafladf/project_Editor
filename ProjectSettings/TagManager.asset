@@ -15,6 +15,7 @@ TagManager:
   - Trace
   - Wall
   - Belt
+  - Infra
   layers:
   - Default
   - TransparentFX
