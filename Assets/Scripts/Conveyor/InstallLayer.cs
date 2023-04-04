@@ -26,6 +26,10 @@ public class InstallLayer : MonoBehaviour
 
     public void OutPointer(PointerEventData data)
     {
-        if(!IsInstall)GetComponent<Image>().sprite = bf;
+        if (!IsInstall && IM.cnt)
+        {
+            IM.CurLay = null;
+            GetComponent<Image>().sprite = bf;
+        }
     }
 }

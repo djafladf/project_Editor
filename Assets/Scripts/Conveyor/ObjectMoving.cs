@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ObjectMoving : MonoBehaviour
 {
-    bool Moving = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Belt")
@@ -13,7 +12,6 @@ public class ObjectMoving : MonoBehaviour
             if (collision.gameObject.name == "Start")
             {
                 StopAllCoroutines();
-                Moving = true;
                 StartCoroutine(OnBelt(collision.transform.parent));
             }
         }

@@ -54,12 +54,14 @@ public class InstallIcon : MonoBehaviour
         if (IM.CurLay == null) Destroy(Oup);
         else
         {
-            Debug.Log(IM.CurLay.name);
+            IM.cnt = false;
             Oup.transform.position = IM.CurLay.transform.position;
             Oup.GetComponent<Installation>().InLayer = IM.CurLay;
             IM.CurLay.GetComponent<InstallLayer>().OutPointer(null);
             IM.CurLay.GetComponent<InstallLayer>().IsInstall = true;
+            IM.CurLay.SetActive(false);
             IM.CurLay = null;
+            IM.cnt = true;
         }
         IM.gameObject.SetActive(false);
     }
