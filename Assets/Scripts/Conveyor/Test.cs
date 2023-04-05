@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Test : MonoBehaviour
 {
     public GameObject Obj;
+    public Transform parent;
     [Range(0, 3)]
     public float MakingInterv;
     public string shape;
@@ -26,7 +27,7 @@ public class Test : MonoBehaviour
             yield return new WaitForSeconds(MakingInterv);
             if (!working) continue;
             int x = Random.Range(0, 3);
-            GameObject cnt = Instantiate(Obj);
+            GameObject cnt = Instantiate(Obj,parent);
             cnt.GetComponent<SpriteRenderer>().color = colors[x];
             cnt.transform.position = new Vector3(transform.position.x + 50, transform.position.y, transform.position.z);
             cnt.GetComponent<Convey_Object>().color = cl[x];

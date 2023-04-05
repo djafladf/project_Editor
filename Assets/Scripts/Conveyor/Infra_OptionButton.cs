@@ -9,20 +9,24 @@ public class Infra_OptionButton : MonoBehaviour
     public GameObject Parent;
     public Color AfColor;
     Color BfColor;
+    Infra_Option IO;
 
     private void Awake()
     {
         if (GetComponent<EventTrigger>() == null) gameObject.AddComponent<EventTrigger>();
         MyUi.ButtonInit(GetComponent<EventTrigger>(), OnPointer, OutPointer, ClickPointer);
         BfColor = GetComponent<Image>().color;
+        IO = transform.parent.gameObject.GetComponent<Infra_Option>();
     }
     void OnPointer(PointerEventData data)
     {
         GetComponent<Image>().color = AfColor;
+        IO.OnOption = true;
     }
     void OutPointer(PointerEventData data)
     {
         GetComponent<Image>().color = BfColor;
+        IO.OnOption = false;
     }
     void ClickPointer(PointerEventData data)
     {
@@ -30,12 +34,13 @@ public class Infra_OptionButton : MonoBehaviour
         switch (name)
         {
             case "Rotate":
-                transform.parent.GetComponent<Infra_Option>().Clicked.transform.Rotate(0, 0, -90);
+                IO.Clicked.transform.Rotate(0, 0, -90);
                 break;
             case "Delete":
-                transform.parent.GetComponent<Infra_Option>().Clicked.GetComponent<Installation>().DelSelf();
+                IO.Clicked.GetComponent<Installation>().DelSelf();
                 break;
             case "Setting":
+                IO.Clicked.GetComponent<Installation>().OpenSetting();
                 break;
         }
         Parent.SetActive(false);

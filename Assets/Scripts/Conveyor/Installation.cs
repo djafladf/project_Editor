@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
@@ -12,8 +13,11 @@ public class Installation : MonoBehaviour
     public bool IsInstalled = false;
     public bool OnWork = false;     // 작동 여부(false면 해당 Infra는 작동하지 않는다.)
     public int type;
+
     public GameObject InLayer;
-    public GameObject Option;
+    public GameObject Setting;
+
+    public Convey_Manager CM;
 
     public bool TouchAble = true;
     void Awake()
@@ -21,6 +25,7 @@ public class Installation : MonoBehaviour
         if (GetComponent<EventTrigger>() == null) gameObject.AddComponent<EventTrigger>();
         EventTrigger eventTrigger = GetComponent<EventTrigger>();
         MyUi.AddEvent(eventTrigger, EventTriggerType.PointerClick, Click);
+        CM = transform.parent.parent.GetComponent<Convey_Manager>();
     }
 
     public void DelSelf()
@@ -49,12 +54,21 @@ public class Installation : MonoBehaviour
         }
     }
 
+    public void OpenSetting()
+    {
+        GameObject Cnt = Instantiate(Setting, transform.parent);
+        if (type == 1)   // 분류기일때
+            GetComponent<Infra_Classifier>().InitSetting(Cnt);
+        Cnt.transform.position = transform.position;
+        CM.OptionAble = false;
+    }
+
     void Click(PointerEventData Data)
     {
         if (!TouchAble) return;
         if(Data.pointerId == -2)
         {
-            transform.parent.gameObject.GetComponent<Convey_Manager>().Option.OptionInit(gameObject); 
+            CM.Option.OptionInit(gameObject); 
         }
     }
 
