@@ -27,6 +27,7 @@ public class Convey_Object : MonoBehaviour
                 case 2: // 분쇄기
                     Destroy(gameObject); break;
                 case 3: // 조합기
+                    collision.gameObject.GetComponent<Infra_Combine>().Combine(gameObject);
                     break;
                 case 4: // 추출기
                     break;

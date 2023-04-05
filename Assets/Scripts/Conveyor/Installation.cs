@@ -25,7 +25,7 @@ public class Installation : MonoBehaviour
         if (GetComponent<EventTrigger>() == null) gameObject.AddComponent<EventTrigger>();
         EventTrigger eventTrigger = GetComponent<EventTrigger>();
         MyUi.AddEvent(eventTrigger, EventTriggerType.PointerClick, Click);
-        CM = transform.parent.parent.GetComponent<Convey_Manager>();
+        if(type != 5) CM = transform.parent.parent.GetComponent<Convey_Manager>();
     }
 
     public void DelSelf()

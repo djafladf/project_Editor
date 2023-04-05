@@ -11,11 +11,13 @@ using UnityEngine.UI;
 public class Infra_Classifier : MonoBehaviour
 {
     Dictionary<string,List<string>> Options = new Dictionary<string, List<string>>
-    { {"Color", new List<string>() {"Red","Green","Blue" } }, 
-      {"Shape", new List<string>() {"Rectangle","Triangle","Star"} } };
+    { {"Color", new List<string>() {"Red","Green","Blue","Cnt"} }, 
+      {"Shape", new List<string>() {"Rectangle","Triangle","Star","Cnt"} } };
 
     string CurType = "Color";
+    int CurTypeBal = 0;
     string[] CurDetail = new string[] { "Red", "Green", "Blue" };
+    int[] CurDetailVal = new int[] {0,1,2};
 
     TMP_Dropdown Type_D;
     TMP_Dropdown Out1_D;
@@ -36,9 +38,13 @@ public class Infra_Classifier : MonoBehaviour
     {
         Setting = _Setting;
         Type_D = _Setting.transform.GetChild(0).GetComponent<TMP_Dropdown>();
+        Type_D.value = CurTypeBal;
         Out1_D = _Setting.transform.GetChild(1).GetComponent<TMP_Dropdown>();
+        Out1_D.value = CurDetailVal[0];
         Out2_D = _Setting.transform.GetChild(2).GetComponent<TMP_Dropdown>();
+        Out2_D.value = CurDetailVal[1];
         Out3_D = _Setting.transform.GetChild(3).GetComponent<TMP_Dropdown>();
+        Out3_D.value = CurDetailVal[2];
         Apply = _Setting.transform.GetChild(4).GetComponent<EventTrigger>();
 
         Type_D.onValueChanged.AddListener(DropChange);
@@ -60,9 +66,14 @@ public class Infra_Classifier : MonoBehaviour
     {
         if (Out1_D.value != Out2_D.value && Out1_D.value != Out3_D.value && Out2_D.value != Out3_D.value)
         {
+            CurType = Type_D.captionText.text;
+            CurTypeBal = Type_D.value;
             CurDetail[0] = Out1_D.captionText.text;
+            CurDetailVal[0] = Out1_D.value;
             CurDetail[1] = Out2_D.captionText.text;
+            CurDetailVal[1] = Out2_D.value;
             CurDetail[2] = Out3_D.captionText.text;
+            CurDetailVal[2] = Out3_D.value;
             GetComponent<Installation>().CM.OptionAble = true;
             Destroy(Setting);
         }
@@ -91,9 +102,15 @@ public class Infra_Classifier : MonoBehaviour
             string c = "";
             if (CurType == "Color") c = cnt.color;
             else if (CurType == "Shape") c = cnt.shape;
-            if (CurDetail[2] == c) CurWork.transform.position = Out3.position;
+            if (CurDetail[0] == c) CurWork.transform.position = Out1.position;
             else if (CurDetail[1] == c) CurWork.transform.position = Out2.position;
-            else CurWork.transform.position = Out1.position;
+            else if (CurDetail[2] == c) CurWork.transform.position = Out3.position;
+            else
+            {
+                if (CurDetail[0] == "Cnt") CurWork.transform.position = Out1.position;
+                else if (CurDetail[1] == "Cnt") CurWork.transform.position = Out2.position;
+                else CurWork.transform.position = Out3.position;
+            }
             CurWork.SetActive(true);
         }
     }
