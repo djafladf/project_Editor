@@ -33,7 +33,7 @@ public class Infra_OptionButton : MonoBehaviour
                 transform.parent.GetComponent<Infra_Option>().Clicked.transform.Rotate(0, 0, -90);
                 break;
             case "Delete":
-                Destroy(transform.parent.GetComponent<Infra_Option>().Clicked);
+                transform.parent.GetComponent<Infra_Option>().Clicked.GetComponent<Installation>().DelSelf();
                 break;
             case "Setting":
                 break;

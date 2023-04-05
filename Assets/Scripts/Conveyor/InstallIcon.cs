@@ -8,6 +8,8 @@ public class InstallIcon : MonoBehaviour
     public InstallManager IM;
     public InstallO_C OC;
     public GameObject Inp;
+    public GameObject Inp_Img;
+    public GameObject Infras;
     public Color Af;
     Color bf;
 
@@ -37,8 +39,7 @@ public class InstallIcon : MonoBehaviour
 
     void DragOn(PointerEventData Data)
     {
-        Oup = Instantiate(Inp, transform.parent.parent.parent);
-        Oup.transform.position = transform.position;
+        Oup = Instantiate(Inp_Img, transform.parent.parent.parent);
         Oup.transform.SetAsFirstSibling();
         IM.gameObject.SetActive(true);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); mousePos.z = 0;
@@ -51,10 +52,11 @@ public class InstallIcon : MonoBehaviour
     }
     void DragEnd(PointerEventData data)
     {
-        if (IM.CurLay == null) Destroy(Oup);
-        else
+        Destroy(Oup);
+        if(IM.CurLay != null)
         {
             IM.cnt = false;
+            Oup = Instantiate(Inp, Infras.transform);
             Oup.transform.position = IM.CurLay.transform.position;
             Oup.GetComponent<Installation>().InLayer = IM.CurLay;
             IM.CurLay.GetComponent<InstallLayer>().OutPointer(null);

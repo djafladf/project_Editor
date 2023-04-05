@@ -6,14 +6,16 @@ using UnityEngine.EventSystems;
 
 public class Installation : MonoBehaviour
 {
-    public GameObject BfIn = null;
-    public GameObject AfIn = null;
+    public List<GameObject> BfInfra = new List<GameObject>();
+    public List<GameObject> AfInfra = new List<GameObject>();
 
     public bool IsInstalled = false;
     public bool OnWork = false;     // 작동 여부(false면 해당 Infra는 작동하지 않는다.)
+    public int type;
     public GameObject InLayer;
     public GameObject Option;
 
+    public bool TouchAble = true;
     void Awake()
     {
         if (GetComponent<EventTrigger>() == null) gameObject.AddComponent<EventTrigger>();
@@ -26,23 +28,30 @@ public class Installation : MonoBehaviour
         Disconnect();
         InLayer.SetActive(true);
         InLayer.GetComponent<InstallLayer>().IsInstall = false;
+        InLayer.GetComponent<InstallLayer>().OutPointer(null);
         Destroy(gameObject);
     }
     public void Disconnect()
     {
-        if (AfIn == null || OnWork == false) return;
+        if (AfInfra.Count == 0 || OnWork == false) return;
         OnWork = false;
-        AfIn.GetComponent<Installation>().Disconnect();
+        foreach(var a in AfInfra) a.GetComponent<Installation>().Disconnect();
     }
     public void Connect()
     {
-        if (AfIn == null || BfIn == null) return;
-        if (BfIn.GetComponent<Installation>().OnWork == false) return;
-        AfIn.GetComponent<Installation>().Connect();
+        if (AfInfra.Count == 0 || BfInfra.Count == 0) return;
+        if (OnWork == false) return;
+        foreach(var a in AfInfra)
+        {
+            Installation b = a.GetComponent<Installation>();
+            if (b.OnWork == true) continue;
+            b.OnWork = true; b.Connect();
+        }
     }
 
     void Click(PointerEventData Data)
     {
+        if (!TouchAble) return;
         if(Data.pointerId == -2)
         {
             transform.parent.gameObject.GetComponent<Convey_Manager>().Option.OptionInit(gameObject); 
