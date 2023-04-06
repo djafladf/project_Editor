@@ -88,7 +88,7 @@ public class Infra_Combine : MonoBehaviour
             yield return new WaitForSeconds(1);
             if (ColorList.Count == 0 || ShapeList.Count == 0) continue;
             string Cnt1 = ColorList[0]; ColorList.RemoveAt(0);
-            string Cnt2 = ShapeList[1]; ShapeList.RemoveAt(0);
+            string Cnt2 = ShapeList[0]; ShapeList.RemoveAt(0);
             GameObject Cnt = Instantiate(ShapeType[Cnt2],ObjL);
             Cnt.GetComponent<Convey_Object>().shape = Cnt2;
             Cnt.GetComponent<Convey_Object>().color = Cnt1;

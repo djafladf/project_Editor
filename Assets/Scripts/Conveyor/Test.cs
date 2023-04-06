@@ -21,7 +21,7 @@ public class Test : MonoBehaviour
     {
         StartCoroutine(MakeObj());
     }
-    IEnumerator MakeObj()       //조합기 테스트용
+    /*IEnumerator MakeObj()       //조합기 테스트용
     {
         while (true)
         {
@@ -46,16 +46,16 @@ public class Test : MonoBehaviour
             if (++i == 100) break;
         }
         yield break;
-    }
-    /*IEnumerator MakeObj()
+    }*/
+    IEnumerator MakeObj()
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(MakingInterv);
             if (!working) continue;
             int x = Random.Range(0, 3);
             int y = Random.Range(0, 3);
-            GameObject cnt = Instantiate(Obj[y],parent);
+            GameObject cnt = Instantiate(Obj[y], parent);
             cnt.GetComponent<SpriteRenderer>().color = colors[x];
             cnt.transform.position = new Vector3(transform.position.x + 50, transform.position.y, transform.position.z);
             cnt.GetComponent<Convey_Object>().color = cl[x];
@@ -63,5 +63,5 @@ public class Test : MonoBehaviour
             if (++i == 100) break;
         }
         yield break;
-    }*/
+    }
 }

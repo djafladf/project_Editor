@@ -30,6 +30,7 @@ public class Convey_Object : MonoBehaviour
                     collision.gameObject.GetComponent<Infra_Combine>().Combine(gameObject);
                     break;
                 case 4: // √ﬂ√‚±‚
+                    collision.gameObject.GetComponent<Infra_Extractor>().Extract(gameObject);
                     break;
             }
         }
