@@ -7,11 +7,9 @@ using UnityEngine.EventSystems;
 
 public class Installation : MonoBehaviour
 {
-    public List<GameObject> BfInfra = new List<GameObject>();
-    public List<GameObject> AfInfra = new List<GameObject>();
-
     public bool IsInstalled = false;
     public bool OnWork = false;     // 작동 여부(false면 해당 Infra는 작동하지 않는다.)
+    public bool Manual = false;
     public int type;
 
     public GameObject InLayer;
@@ -27,31 +25,31 @@ public class Installation : MonoBehaviour
         MyUi.AddEvent(eventTrigger, EventTriggerType.PointerClick, Click);
         if(type != 5) CM = transform.parent.parent.GetComponent<Convey_Manager>();
     }
+    private void Start()
+    {
+        if (name[0] != 'P') StartCoroutine(ConsumePower());
+
+    }
+
+    IEnumerator ConsumePower()
+    {
+        print(name);
+        while (true)
+        {
+            if (CM.Power <= 0) OnWork = false;
+            else OnWork = true;
+            if (OnWork) CM.Power -= 1;
+            yield return new WaitForSeconds(1);
+        }
+    }
+
 
     public void DelSelf()
     {
-        Disconnect();
         InLayer.SetActive(true);
         InLayer.GetComponent<InstallLayer>().IsInstall = false;
         InLayer.GetComponent<InstallLayer>().OutPointer(null);
         Destroy(gameObject);
-    }
-    public void Disconnect()
-    {
-        if (AfInfra.Count == 0 || OnWork == false) return;
-        OnWork = false;
-        foreach(var a in AfInfra) a.GetComponent<Installation>().Disconnect();
-    }
-    public void Connect()
-    {
-        if (AfInfra.Count == 0 || BfInfra.Count == 0) return;
-        if (OnWork == false) return;
-        foreach(var a in AfInfra)
-        {
-            Installation b = a.GetComponent<Installation>();
-            if (b.OnWork == true) continue;
-            b.OnWork = true; b.Connect();
-        }
     }
 
     public void OpenSetting()

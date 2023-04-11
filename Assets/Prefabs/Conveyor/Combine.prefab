@@ -196,10 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13181b628e04ef458ca5e108d073e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BfInfra: []
-  AfInfra: []
   IsInstalled: 0
-  OnWork: 0
+  OnWork: 1
+  Manual: 0
   type: 3
   InLayer: {fileID: 0}
   Setting: {fileID: 0}
@@ -223,7 +222,6 @@ MonoBehaviour:
   Obj1: {fileID: 298169937085434253, guid: 5862af4962d008a42980d1292a45c460, type: 3}
   Obj2: {fileID: 298169937085434253, guid: 1e775a4d9386f1346ac7489c9377b74e, type: 3}
   Obj3: {fileID: 298169937085434253, guid: 17c7a771faa670b409801ddfa23efcaf, type: 3}
-  ObjL: {fileID: 0}
 --- !u!1 &5802032822729483602
 GameObject:
   m_ObjectHideFlags: 0

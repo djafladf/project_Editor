@@ -119,10 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13181b628e04ef458ca5e108d073e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BfInfra: []
-  AfInfra: []
   IsInstalled: 0
-  OnWork: 0
+  OnWork: 1
+  Manual: 0
   type: 4
   InLayer: {fileID: 0}
   Setting: {fileID: 0}

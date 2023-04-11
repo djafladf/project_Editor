@@ -30,8 +30,11 @@ public class Infra_Extractor : MonoBehaviour
     };
     Dictionary<string, GameObject> ShapeType;
 
+    Installation Ins;
+
     private void Awake()
     {
+        Ins = GetComponent<Installation>();
         ShapeType = new Dictionary<string, GameObject>()
         {
             { "Rectangle", Obj1 },
@@ -63,9 +66,8 @@ public class Infra_Extractor : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            if (ObjList.Count == 0) continue;
+            if (ObjList.Count == 0 || !Ins.OnWork) continue;
             var cnt = ObjList[0]; ObjList.RemoveAt(0);
-            Debug.Log("!");
 
             // Color Extract
             GameObject Cnt = Instantiate(NoneObj,ObjL);

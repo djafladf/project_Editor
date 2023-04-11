@@ -30,6 +30,15 @@ public class Infra_Classifier : MonoBehaviour
     public Transform Out2;
     public Transform Out3;
     public List<GameObject> InpQueue = new List<GameObject>();
+
+
+    Installation Ins;
+
+    private void Awake()
+    {
+        Ins = GetComponent<Installation>();
+    }
+
     private void Start()
     {
         StartCoroutine(WorkGap());
@@ -74,7 +83,7 @@ public class Infra_Classifier : MonoBehaviour
             CurDetailVal[1] = Out2_D.value;
             CurDetail[2] = Out3_D.captionText.text;
             CurDetailVal[2] = Out3_D.value;
-            GetComponent<Installation>().CM.OptionAble = true;
+           Ins.CM.OptionAble = true;
             Destroy(Setting);
         }
         else
@@ -95,7 +104,7 @@ public class Infra_Classifier : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1f);
-            if (InpQueue.Count == 0) { continue; }
+            if (InpQueue.Count == 0 || !Ins.OnWork) { continue; }
             GameObject CurWork = InpQueue[0]; InpQueue.RemoveAt(0);
             Convey_Object cnt = CurWork.GetComponent<Convey_Object>();
 

@@ -29,13 +29,16 @@ public class Infra_Combine : MonoBehaviour
     };
     Dictionary<string, GameObject> ShapeType;
 
+    Installation Ins;
+
     private void Awake()
     {
+        Ins = GetComponent<Installation>();
         ShapeType = new Dictionary<string, GameObject>()
         {
             { "Rectangle", Obj1 },
-            { "Triangle", Obj2 },
-            { "Star", Obj3 }
+            { "Star", Obj2 },
+            { "Triangle", Obj3 }
         };
         ObjL = transform.parent.parent.GetChild(1);
     }
@@ -86,7 +89,7 @@ public class Infra_Combine : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            if (ColorList.Count == 0 || ShapeList.Count == 0) continue;
+            if (ColorList.Count == 0 || ShapeList.Count == 0 || !Ins.OnWork) continue;
             string Cnt1 = ColorList[0]; ColorList.RemoveAt(0);
             string Cnt2 = ShapeList[0]; ShapeList.RemoveAt(0);
             GameObject Cnt = Instantiate(ShapeType[Cnt2],ObjL);

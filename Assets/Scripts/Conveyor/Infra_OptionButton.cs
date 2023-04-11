@@ -39,7 +39,7 @@ public class Infra_OptionButton : MonoBehaviour
             case "Delete":
                 IO.Clicked.GetComponent<Installation>().DelSelf();
                 break;
-            case "Setting":
+            case "Detail":
                 IO.Clicked.GetComponent<Installation>().OpenSetting();
                 break;
         }
