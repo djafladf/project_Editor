@@ -89,7 +89,7 @@ public class Infra_Combine : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            if (ColorList.Count == 0 || ShapeList.Count == 0 || !Ins.OnWork) continue;
+            if (ColorList.Count == 0 || ShapeList.Count == 0 || !Ins.OnWork || !Ins.CM.IsPlaying) continue;
             string Cnt1 = ColorList[0]; ColorList.RemoveAt(0);
             string Cnt2 = ShapeList[0]; ShapeList.RemoveAt(0);
             GameObject Cnt = Instantiate(ShapeType[Cnt2],ObjL);

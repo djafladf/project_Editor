@@ -8,6 +8,7 @@ public class Convey_Object : MonoBehaviour
     public string color;
     public string shape;
     public bool MoveAble = true;
+    public bool ETC;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Belt")
@@ -17,7 +18,7 @@ public class Convey_Object : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Infra")
         {
-            StopAllCoroutines();
+            if(ETC)StopAllCoroutines();
             switch (collision.gameObject.GetComponent<Installation>().type)
             {
                 case 0: // 목적지
@@ -40,19 +41,21 @@ public class Convey_Object : MonoBehaviour
 
     IEnumerator OnBelt(Transform Belt)
     {
-        print("!");
         Installation s = Belt.GetComponent<Installation>();
         Transform _St = Belt;
         Transform _Ed = Belt.GetChild(1);
+        ETC = false;
         // 중앙까지 이동
         for (; Vector3.Magnitude(transform.position - _St.position) >= 0.5f;)    
         {
+            print(name);
             if (s.OnWork) transform.Translate((_St.position - transform.position).normalized);
             else yield return new WaitForSeconds(0.5f);
             yield return new WaitForSeconds(0.01f);
         }
         transform.position = _St.position;
-        
+        ETC = true;
+
         Vector3 a = (_Ed.position - _St.transform.position).normalized;
         // 끝으로 이동
         for (;Vector3.Magnitude(transform.position - _Ed.position) >= 0.5f;)

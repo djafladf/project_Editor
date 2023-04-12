@@ -19,30 +19,26 @@ public class Infra_Power : MonoBehaviour
     }
     public void AddFuel(GameObject A)
     {
-        if (Vector3.Magnitude(A.transform.position - _St.position) <= 15)
-        {
-            if (A.GetComponent<Convey_Object>().shape != "") Fuel += 10;
-            if (A.GetComponent<Convey_Object>().color != "") Fuel += 10;
-            Destroy(A);
-        }
+        if (A.GetComponent<Convey_Object>().shape != "") Fuel += 10;
+        if (A.GetComponent<Convey_Object>().color != "") Fuel += 10;
+        Destroy(A);
     }
 
     IEnumerator Work()
     {
         while (true)
         {
-            yield return new WaitForSeconds(1);
-            print(Ins.CM.Power);
+            yield return new WaitForSeconds(0.5f);
             if (Fuel != 0) 
             {
                 if (Fuel < 10)
                 {
-                    Ins.CM.Power += Fuel;
+                    Ins.CM.PowerUpdate(Fuel);
                     Fuel = 0;
                 }
                 else
                 {
-                    Ins.CM.Power += Fuel;
+                    Ins.CM.PowerUpdate(10);
                     Fuel -= 10;
                 }
 

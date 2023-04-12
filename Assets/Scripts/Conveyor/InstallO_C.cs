@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,7 +7,8 @@ public class InstallO_C : MonoBehaviour
 {
     public Color Af;
     Color bf;
-    bool IsOpen = false;
+    public bool IsOpen = false;
+    public bool OpenAble = true;
     private void Awake()
     {
         if (GetComponent<EventTrigger>() == null) gameObject.AddComponent<EventTrigger>();
@@ -20,16 +18,19 @@ public class InstallO_C : MonoBehaviour
 
     void OnPointer(PointerEventData data)
     {
+        if (!OpenAble) return;
         GetComponent<Image>().color = Af;
     }
 
     void OutPointer(PointerEventData data)
     {
+        if (!OpenAble) return;
         GetComponent<Image>().color = bf;
     }
 
-    void Click(PointerEventData Data)
+    public void Click(PointerEventData Data)
     {
+        if (!OpenAble) return;
         StopAllCoroutines();
         StartCoroutine(InstallOC());
     }

@@ -3,22 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Test : MonoBehaviour
+public class ConveyTest : MonoBehaviour
 {
     public List<GameObject> Obj;
     public GameObject NoneObj;
     public Transform parent;
-    [Range(0, 3)]
-    public float MakingInterv;
     public string[] shape;
     public string[] cl;
     public bool working;
+    float MakingInterv = 1.5f;
     Color[] colors = new Color[] {Color.red,Color.blue,Color.green };
 
     int i = 0;
 
     private void Start()
     {
+        StartCoroutine(MakeObj());
+    }
+    public void StopWork()
+    {
+        working = false;
+        StopAllCoroutines();
+    }
+    public void StartWork()
+    {
+        working = true;
         StartCoroutine(MakeObj());
     }
     /*IEnumerator MakeObj()       //조합기 테스트용

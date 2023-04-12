@@ -33,22 +33,20 @@ public class Installation : MonoBehaviour
 
     IEnumerator ConsumePower()
     {
-        print(name);
         while (true)
         {
+            yield return new WaitForSeconds(1);
+            if (!CM.IsPlaying) continue;
             if (CM.Power <= 0) OnWork = false;
             else OnWork = true;
-            if (OnWork) CM.Power -= 1;
-            yield return new WaitForSeconds(1);
+            if (OnWork) CM.PowerUpdate(-1);
         }
     }
 
 
     public void DelSelf()
     {
-        InLayer.SetActive(true);
-        InLayer.GetComponent<InstallLayer>().IsInstall = false;
-        InLayer.GetComponent<InstallLayer>().OutPointer(null);
+        
         Destroy(gameObject);
     }
 
@@ -68,6 +66,12 @@ public class Installation : MonoBehaviour
         {
             CM.Option.OptionInit(gameObject); 
         }
+    }
+    private void OnDestroy()
+    {
+        InLayer.SetActive(true);
+        InLayer.GetComponent<InstallLayer>().IsInstall = false;
+        InLayer.GetComponent<InstallLayer>().OutPointer(null);
     }
 
 }
