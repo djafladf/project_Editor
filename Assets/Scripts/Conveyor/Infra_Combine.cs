@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Infra_Combine : MonoBehaviour
 {
@@ -12,7 +15,13 @@ public class Infra_Combine : MonoBehaviour
     public GameObject Obj1;     //Rec
     public GameObject Obj2;     //Star
     public GameObject Obj3;     //Tri
-    
+
+    public GameObject Message;
+
+    bool MCnt = false;
+
+    GameObject CurM = null;
+
     Transform ObjL;
 
     string Inp1Type = "color";
@@ -41,11 +50,48 @@ public class Infra_Combine : MonoBehaviour
             { "Triangle", Obj3 }
         };
         ObjL = transform.parent.parent.GetChild(1);
+        MyUi.ButtonInit(GetComponent<EventTrigger>(), OnPointer, OutPointer, null);
     }
 
     private void Start()
     {
         StartCoroutine(Work());
+    }
+
+    void OnPointer(PointerEventData Data)
+    {
+        if (MCnt)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Work());
+            StartCoroutine(ShowMessage());
+        }
+    }
+    void OutPointer(PointerEventData Data)
+    {
+        if (MCnt)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Work());
+            StartCoroutine(EndMessage());
+        }
+        MCnt = true;
+    }
+
+    IEnumerator ShowMessage()
+    {
+        if (CurM == null)
+        {
+            CurM = Instantiate(Message, transform);
+            CurM.transform.position = gameObject.transform.position;
+        }
+        for (; CurM.transform.position.y < gameObject.transform.position.y + 100; CurM.transform.position += Vector3.up * 10) yield return new WaitForSeconds(0.02f);
+    }
+    IEnumerator EndMessage()
+    {
+        for (; CurM.transform.position.y > gameObject.transform.position.y; CurM.transform.position += Vector3.down * 10) yield return new WaitForSeconds(0.02f);
+        Destroy(CurM);
+        CurM = null;
     }
 
     public void Combine(GameObject Obj)
@@ -84,19 +130,29 @@ public class Infra_Combine : MonoBehaviour
         Destroy(Obj);
     }
 
+    void SubWork()
+    {
+        string Cnt1 = ColorList[0]; ColorList.RemoveAt(0);
+        string Cnt2 = ShapeList[0]; ShapeList.RemoveAt(0);
+        GameObject Cnt = Instantiate(ShapeType[Cnt2], ObjL);
+        if(CurM != null)
+        {
+            CurM.transform.GetChild(0).GetComponent<Image>().color = ColorType[Cnt1];
+            CurM.transform.GetChild(1).GetComponent<Image>().sprite = ShapeType[Cnt2].GetComponent<SpriteRenderer>().sprite;
+        }
+        Cnt.GetComponent<Convey_Object>().shape = Cnt2;
+        Cnt.GetComponent<Convey_Object>().color = Cnt1;
+        Cnt.GetComponent<SpriteRenderer>().color = ColorType[Cnt1];
+        Cnt.transform.position = Out.position;
+    }
+
     IEnumerator Work()
     {
         while (true)
         {
             yield return new WaitForSeconds(1);
             if (ColorList.Count == 0 || ShapeList.Count == 0 || !Ins.OnWork || !Ins.CM.IsPlaying) continue;
-            string Cnt1 = ColorList[0]; ColorList.RemoveAt(0);
-            string Cnt2 = ShapeList[0]; ShapeList.RemoveAt(0);
-            GameObject Cnt = Instantiate(ShapeType[Cnt2],ObjL);
-            Cnt.GetComponent<Convey_Object>().shape = Cnt2;
-            Cnt.GetComponent<Convey_Object>().color = Cnt1;
-            Cnt.GetComponent<SpriteRenderer>().color = ColorType[Cnt1];
-            Cnt.transform.position = Out.position;
+            SubWork();
         }
     }
 }

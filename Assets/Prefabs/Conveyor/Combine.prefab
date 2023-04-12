@@ -222,6 +222,7 @@ MonoBehaviour:
   Obj1: {fileID: 298169937085434253, guid: 5862af4962d008a42980d1292a45c460, type: 3}
   Obj2: {fileID: 298169937085434253, guid: 1e775a4d9386f1346ac7489c9377b74e, type: 3}
   Obj3: {fileID: 298169937085434253, guid: 17c7a771faa670b409801ddfa23efcaf, type: 3}
+  Message: {fileID: 5674340457191558378, guid: 79ae3f6555494aa48b62b420ef214d2e, type: 3}
 --- !u!1 &5802032822729483602
 GameObject:
   m_ObjectHideFlags: 0

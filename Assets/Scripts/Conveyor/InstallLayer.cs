@@ -32,4 +32,10 @@ public class InstallLayer : MonoBehaviour
             GetComponent<Image>().sprite = bf;
         }
     }
+    public void DestroyInstall()
+    {
+        gameObject.SetActive(true);
+        IsInstall = false;
+        OutPointer(null);
+    }
 }

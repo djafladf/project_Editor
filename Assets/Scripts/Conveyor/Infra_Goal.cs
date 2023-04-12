@@ -40,7 +40,7 @@ public class Infra_Goal : MonoBehaviour
         }
         else
         {
-            print("Error!");
+            CM.Errorr();
         }
         Destroy(_A);
     }

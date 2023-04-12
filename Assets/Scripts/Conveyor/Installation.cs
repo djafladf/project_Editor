@@ -66,13 +66,9 @@ public class Installation : MonoBehaviour
             CM.Option.OptionInit(gameObject); 
         }
     }
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (InLayer != null)
-        {
-            InLayer.SetActive(true);
-            InLayer.GetComponent<InstallLayer>().IsInstall = false;
-            InLayer.GetComponent<InstallLayer>().OutPointer(null);
-        }
+            InLayer.GetComponent<InstallLayer>().DestroyInstall();
     }
 }

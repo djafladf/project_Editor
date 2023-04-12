@@ -17,8 +17,6 @@ public class Infra_Extractor : MonoBehaviour
 
     Transform ObjL;
 
-
-
     List<Tuple<string, string>> ObjList = new List<Tuple<string, string>>();
     // Color, Shape;
 

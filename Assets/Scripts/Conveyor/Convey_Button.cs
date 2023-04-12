@@ -31,7 +31,7 @@ public class Convey_Button : MonoBehaviour
     {
         if(name == "Speed")
         {
-            if (CM.IsPlaying == false) CM.PlayStart();
+            if (CM.IsPlaying == false) { CM.PlayStart(); Is_Click = true; }
             if (Is_Click)
             {
                 image.sprite = Normal;

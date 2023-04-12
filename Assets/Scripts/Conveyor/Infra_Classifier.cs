@@ -49,10 +49,11 @@ public class Infra_Classifier : MonoBehaviour
         Type_D = _Setting.transform.GetChild(0).GetComponent<TMP_Dropdown>();
         Type_D.value = CurTypeBal;
         Out1_D = _Setting.transform.GetChild(1).GetComponent<TMP_Dropdown>();
-        Out1_D.value = CurDetailVal[0];
         Out2_D = _Setting.transform.GetChild(2).GetComponent<TMP_Dropdown>();
-        Out2_D.value = CurDetailVal[1];
         Out3_D = _Setting.transform.GetChild(3).GetComponent<TMP_Dropdown>();
+        DropChange(CurTypeBal);
+        Out1_D.value = CurDetailVal[0];
+        Out2_D.value = CurDetailVal[1];
         Out3_D.value = CurDetailVal[2];
         Apply = _Setting.transform.GetChild(4).GetComponent<EventTrigger>();
 
@@ -83,7 +84,7 @@ public class Infra_Classifier : MonoBehaviour
             CurDetailVal[1] = Out2_D.value;
             CurDetail[2] = Out3_D.captionText.text;
             CurDetailVal[2] = Out3_D.value;
-           Ins.CM.OptionAble = true;
+            Ins.CM.OptionAble = true;
             Destroy(Setting);
         }
         else

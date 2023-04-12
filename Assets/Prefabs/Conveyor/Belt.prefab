@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 0.65, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -128,13 +128,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13181b628e04ef458ca5e108d073e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BfInfra: []
-  AfInfra: []
   IsInstalled: 0
   OnWork: 1
+  Manual: 0
   type: -1
   InLayer: {fileID: 0}
-  Option: {fileID: 8366051156232201939, guid: 0fc966073b138094e91debb872a6f8a8, type: 3}
+  Setting: {fileID: 0}
+  CM: {fileID: 0}
   TouchAble: 1
 --- !u!61 &5593846990936170174
 BoxCollider2D:
