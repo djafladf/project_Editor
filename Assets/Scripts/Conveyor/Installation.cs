@@ -61,7 +61,7 @@ public class Installation : MonoBehaviour
     void Click(PointerEventData Data)
     {
         if (!TouchAble) return;
-        if(Data.pointerId == -2)
+        if(Data.pointerId == -2 && !CM.IsPlaying)
         {
             CM.Option.OptionInit(gameObject); 
         }
