@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Convey_Object : MonoBehaviour
@@ -22,7 +20,8 @@ public class Convey_Object : MonoBehaviour
             switch (collision.gameObject.GetComponent<Installation>().type)
             {
                 case 0: // 목적지
-                    Destroy(gameObject); break;
+                    collision.gameObject.GetComponent<Infra_Goal>().JudgeObj(gameObject);
+                    break;
                 case 1: // 분류기
                     collision.gameObject.GetComponent<Infra_Classifier>().Classify(gameObject);
                     break;
@@ -48,7 +47,6 @@ public class Convey_Object : MonoBehaviour
         // 중앙까지 이동
         for (; Vector3.Magnitude(transform.position - _St.position) >= 0.5f;)    
         {
-            print(name);
             if (s.OnWork) transform.Translate((_St.position - transform.position).normalized);
             else yield return new WaitForSeconds(0.5f);
             yield return new WaitForSeconds(0.01f);

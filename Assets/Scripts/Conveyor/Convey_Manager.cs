@@ -26,7 +26,7 @@ public class Convey_Manager : MonoBehaviour
 
     public void RollBack()
     {
-        PowerUpdate(-Power + 100);
+        PowerUpdate(-Power + 300);
         IsPlaying = false;
         OptionAble = true;
         OC.OpenAble = true;

@@ -46,7 +46,6 @@ public class Installation : MonoBehaviour
 
     public void DelSelf()
     {
-        
         Destroy(gameObject);
     }
 
@@ -69,9 +68,11 @@ public class Installation : MonoBehaviour
     }
     private void OnDestroy()
     {
-        InLayer.SetActive(true);
-        InLayer.GetComponent<InstallLayer>().IsInstall = false;
-        InLayer.GetComponent<InstallLayer>().OutPointer(null);
+        if (InLayer != null)
+        {
+            InLayer.SetActive(true);
+            InLayer.GetComponent<InstallLayer>().IsInstall = false;
+            InLayer.GetComponent<InstallLayer>().OutPointer(null);
+        }
     }
-
 }

@@ -11,15 +11,10 @@ public class ConveyTest : MonoBehaviour
     public string[] shape;
     public string[] cl;
     public bool working;
-    float MakingInterv = 1.5f;
+    float MakingInterv = 1;
     Color[] colors = new Color[] {Color.red,Color.blue,Color.green };
 
     int i = 0;
-
-    private void Start()
-    {
-        StartCoroutine(MakeObj());
-    }
     public void StopWork()
     {
         working = false;
@@ -69,7 +64,7 @@ public class ConveyTest : MonoBehaviour
             cnt.transform.position = new Vector3(transform.position.x + 50, transform.position.y, transform.position.z);
             cnt.GetComponent<Convey_Object>().color = cl[x];
             cnt.GetComponent<Convey_Object>().shape = shape[y];
-            if (++i == 100) break;
+            if (++i == 1000) break;
         }
         yield break;
     }

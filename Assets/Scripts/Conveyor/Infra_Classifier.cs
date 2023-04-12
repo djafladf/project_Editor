@@ -103,7 +103,7 @@ public class Infra_Classifier : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             if (InpQueue.Count == 0 || !Ins.OnWork) { continue; }
             GameObject CurWork = InpQueue[0]; InpQueue.RemoveAt(0);
             Convey_Object cnt = CurWork.GetComponent<Convey_Object>();
