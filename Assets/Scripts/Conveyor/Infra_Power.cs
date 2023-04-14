@@ -27,7 +27,7 @@ public class Infra_Power : MonoBehaviour
     {
         if (_A.GetComponent<Convey_Object>().shape != "") ChangeFuel(20);
         if (_A.GetComponent<Convey_Object>().color != "") ChangeFuel(20);
-        Destroy(_A);
+        _A.SetActive(false);
     }
     void ChangeFuel(int ch) 
     {

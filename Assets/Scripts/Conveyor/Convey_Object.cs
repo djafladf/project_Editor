@@ -64,4 +64,10 @@ public class Convey_Object : MonoBehaviour
         }
         yield break;
     }
+
+    private void OnDisable()
+    {
+        MoveAble = true;
+        ETC = false;
+    }
 }

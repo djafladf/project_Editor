@@ -12,17 +12,11 @@ public class Infra_Combine : MonoBehaviour
     public Transform Inp2;
     public Transform Out;
 
-    public GameObject Obj1;     //Rec
-    public GameObject Obj2;     //Star
-    public GameObject Obj3;     //Tri
-
     public GameObject Message;
 
     bool MCnt = false;
 
     GameObject CurM = null;
-
-    Transform ObjL;
 
     string Inp1Type = "color";
     string Inp2Type = "shape";
@@ -30,26 +24,11 @@ public class Infra_Combine : MonoBehaviour
     List<string> ColorList = new List<string>();
     List<string> ShapeList = new List<string>();
 
-    Dictionary<string, Color> ColorType = new Dictionary<string, Color>()
-    {
-        {"Red",Color.red },
-        {"Blue",Color.blue },
-        {"Green",Color.green }
-    };
-    Dictionary<string, GameObject> ShapeType;
-
     Installation Ins;
 
     private void Awake()
     {
         Ins = GetComponent<Installation>();
-        ShapeType = new Dictionary<string, GameObject>()
-        {
-            { "Rectangle", Obj1 },
-            { "Star", Obj2 },
-            { "Triangle", Obj3 }
-        };
-        ObjL = transform.parent.parent.GetChild(1);
         MyUi.ButtonInit(GetComponent<EventTrigger>(), OnPointer, OutPointer, null);
     }
 
@@ -127,22 +106,19 @@ public class Infra_Combine : MonoBehaviour
                 else ShapeList.Add(ObjShape);
             }
         }
-        Destroy(Obj);
+        Obj.SetActive(false);
     }
 
     void SubWork()
     {
         string Cnt1 = ColorList[0]; ColorList.RemoveAt(0);
         string Cnt2 = ShapeList[0]; ShapeList.RemoveAt(0);
-        GameObject Cnt = Instantiate(ShapeType[Cnt2], ObjL);
+        GameObject Cnt = Ins.CM.COM.ReturnObject(Cnt2,Cnt1);
         if(CurM != null)
         {
-            CurM.transform.GetChild(0).GetComponent<Image>().color = ColorType[Cnt1];
-            CurM.transform.GetChild(1).GetComponent<Image>().sprite = ShapeType[Cnt2].GetComponent<SpriteRenderer>().sprite;
+            CurM.transform.GetChild(0).GetComponent<Image>().color = Ins.CM.ColorType[Cnt1];
+            CurM.transform.GetChild(1).GetComponent<Image>().sprite = Ins.CM.ShapeType[Cnt2].GetComponent<SpriteRenderer>().sprite;
         }
-        Cnt.GetComponent<Convey_Object>().shape = Cnt2;
-        Cnt.GetComponent<Convey_Object>().color = Cnt1;
-        Cnt.GetComponent<SpriteRenderer>().color = ColorType[Cnt1];
         Cnt.transform.position = Out.position;
     }
 

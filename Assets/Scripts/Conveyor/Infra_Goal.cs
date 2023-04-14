@@ -42,7 +42,7 @@ public class Infra_Goal : MonoBehaviour
         {
             CM.Errorr();
         }
-        Destroy(_A);
+        _A.SetActive(false);
     }
 
     void OnPointer(PointerEventData Data)

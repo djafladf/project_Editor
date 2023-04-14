@@ -6,18 +6,46 @@ using UnityEngine.UI;
 
 public class Convey_Manager : MonoBehaviour
 {
+    [Header("- Scripts")]
     public Infra_Option Option;
     public InstallO_C OC;
     public ConveyTest CT;
+    public Convey_ObjectManager COM;
+    [Header("- Prefabs")]
     public TMP_Text PowerText;
     public List<Image> HPS;
     public Image Attacked;
     public int Power;
-    public bool OptionAble = true;
-    public bool IsPlaying = false;
     public Sprite HpOff;
+    public Transform Rails;
+    public Transform Etc;
+
+    [Header("Must Names.Count = Detail.Count")]
+    [Header("- Colors")]
+    public List<string> ColorNames;
+    public List<Color> Colors;
+
+    [Header("- Shapes")]
+    public List<string> ShapeNames;
+    public List<GameObject> Shapes;
+    public GameObject NoneShape;
+
+    public Dictionary<string, Color> ColorType = new Dictionary<string, Color>();
+    public Dictionary<string, GameObject> ShapeType = new Dictionary<string, GameObject>();
+
+    [HideInInspector]
+    public bool OptionAble = true;
+    [HideInInspector]
+    public bool IsPlaying = false;
+
 
     int CurHp = 5;
+
+    private void Awake()
+    {
+        for (int i = 0; i < ColorNames.Count; i++) ColorType[ColorNames[i]] = Colors[i];
+        for (int i = 0; i < ShapeNames.Count; i++) ShapeType[ShapeNames[i]] = Shapes[i];
+    }
 
 
     private void LateUpdate()
@@ -38,13 +66,16 @@ public class Convey_Manager : MonoBehaviour
         OptionAble = true;
         OC.OpenAble = true;
         CT.StopWork();
-        for (int i = 1; i < transform.childCount - 1; i++)
+        COM.DelObj();
+        for(int i = 0; i < Rails.childCount; i++)
         {
-            for (int x = 0; x < transform.GetChild(i).childCount; x++)
-            {
-                transform.GetChild(i).GetChild(x).gameObject.SetActive(false);
-                Destroy(transform.GetChild(i).GetChild(x).gameObject);
-            }
+            Rails.GetChild(i).gameObject.SetActive(false);
+            Destroy(Rails.GetChild(i).gameObject);
+        }
+        for(int i = 0; i < Etc.childCount; i++)
+        {
+            Etc.GetChild(i).gameObject.SetActive(false);
+            Destroy(Etc.GetChild(i).gameObject);
         }
     }
     public void PlayStart()

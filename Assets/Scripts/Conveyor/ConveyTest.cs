@@ -5,14 +5,9 @@ using UnityEngine.UI;
 
 public class ConveyTest : MonoBehaviour
 {
-    public List<GameObject> Obj;
-    public GameObject NoneObj;
-    public Transform parent;
-    public string[] shape;
-    public string[] cl;
+    public Convey_Manager CM;
     public bool working;
     float MakingInterv = 1;
-    Color[] colors = new Color[] {Color.red,Color.blue,Color.green };
 
     int i = 0;
     public void StopWork()
@@ -25,7 +20,7 @@ public class ConveyTest : MonoBehaviour
         working = true;
         StartCoroutine(MakeObj());
     }
-    /*IEnumerator MakeObj()       //조합기 테스트용
+    /*IEnumerator MakeObj()       //조합기 테스트용(색, 모양 중 하나만 나옴)
     {
         while (true)
         {
@@ -57,13 +52,10 @@ public class ConveyTest : MonoBehaviour
         {
             yield return new WaitForSeconds(MakingInterv);
             if (!working) continue;
-            int x = Random.Range(0, 3);
-            int y = Random.Range(0, 3);
-            GameObject cnt = Instantiate(Obj[y], parent);
-            cnt.GetComponent<SpriteRenderer>().color = colors[x];
+            string x = CM.ColorNames[Random.Range(0, CM.ColorNames.Count)];
+            string y = CM.ShapeNames[Random.Range(0, CM.ShapeNames.Count)];
+            GameObject cnt = CM.COM.ReturnObject(y, x);
             cnt.transform.position = new Vector3(transform.position.x + 50, transform.position.y, transform.position.z);
-            cnt.GetComponent<Convey_Object>().color = cl[x];
-            cnt.GetComponent<Convey_Object>().shape = shape[y];
             if (++i == 1000) break;
         }
         yield break;

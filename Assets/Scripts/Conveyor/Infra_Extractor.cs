@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Infra_Extractor : MonoBehaviour
@@ -10,36 +8,14 @@ public class Infra_Extractor : MonoBehaviour
     public Transform Inp;
     public Transform Out;
 
-    public GameObject Obj1;     //Rec
-    public GameObject Obj2;     //Star
-    public GameObject Obj3;     //Tri
-    public GameObject NoneObj;  //Contain Color : Circle
-
-    Transform ObjL;
-
     List<Tuple<string, string>> ObjList = new List<Tuple<string, string>>();
     // Color, Shape;
-
-    Dictionary<string, Color> ColorType = new Dictionary<string, Color>()
-    {
-        {"Red",Color.red },
-        {"Blue",Color.blue },
-        {"Green",Color.green }
-    };
-    Dictionary<string, GameObject> ShapeType;
 
     Installation Ins;
 
     private void Awake()
     {
         Ins = GetComponent<Installation>();
-        ShapeType = new Dictionary<string, GameObject>()
-        {
-            { "Rectangle", Obj1 },
-            { "Triangle", Obj2 },
-            { "Star", Obj3 }
-        };
-        ObjL = transform.parent.parent.GetChild(1);
     }
     private void Start()
     {
@@ -56,7 +32,7 @@ public class Infra_Extractor : MonoBehaviour
             Obj.transform.position = Out.position; return;
         }
         ObjList.Add(new Tuple<string,string> (ObjColor,ObjShape));
-        Destroy(Obj);
+        Obj.SetActive(false);
     }
 
     IEnumerator Work()
@@ -68,16 +44,12 @@ public class Infra_Extractor : MonoBehaviour
             var cnt = ObjList[0]; ObjList.RemoveAt(0);
 
             // Color Extract
-            GameObject Cnt = Instantiate(NoneObj,ObjL);
-            Cnt.GetComponent<Convey_Object>().color = cnt.Item1;
-            Cnt.GetComponent<SpriteRenderer>().color = ColorType[cnt.Item1];
+            GameObject Cnt = Ins.CM.COM.ReturnObject("None",cnt.Item1);
             Cnt.transform.position = Out.position;
 
             yield return new WaitForSeconds(0.5f);
             // Shape Extract
-            GameObject Cnt2 = Instantiate(ShapeType[cnt.Item2], ObjL);
-            Cnt2.GetComponent<Convey_Object>().shape = cnt.Item2;
-            Cnt2.transform.position = Out.position;
+            GameObject Cnt2 = Ins.CM.COM.ReturnObject(cnt.Item2,"None");
             Cnt2.transform.position = Out.position;
         }
     }
