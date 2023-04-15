@@ -7879,7 +7879,7 @@ MonoBehaviour:
   - {fileID: 1304557190}
   - {fileID: 1606419487}
   Attacked: {fileID: 1111404872}
-  Power: 300
+  Power: 3000
   HpOff: {fileID: 21300000, guid: 878617e3f43e1374b905fa609edf1acd, type: 3}
   Rails: {fileID: 975237461}
   Etc: {fileID: 432860907}

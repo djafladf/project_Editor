@@ -25,6 +25,10 @@ public class Infra_Combine : MonoBehaviour
     List<string> ShapeList = new List<string>();
 
     Installation Ins;
+    string Cnt1;
+    string Cnt2;
+    GameObject Cnt;
+    Vector3 ObjPos;
 
     private void Awake()
     {
@@ -72,48 +76,53 @@ public class Infra_Combine : MonoBehaviour
         Destroy(CurM);
         CurM = null;
     }
-
-    public void Combine(GameObject Obj)
+    /// <summary>
+    /// Combine 전 Object의 정보(Color or Shape) Deque에 저장
+    /// Color와 Shape값 모두 보유 중(Not "None")이라면 바로 배출.
+    /// </summary>
+    /// <param name="ObjColor">Object.color</param>
+    /// <param name="ObjShape">Object.shape</param>
+    /// <param name="_Transform">Object.transform</param>
+    public void Combine(string ObjColor, string ObjShape,Transform _Transform)
     {
-        string ObjColor = Obj.GetComponent<Convey_Object>().color;
-        string ObjShape = Obj.GetComponent<Convey_Object>().shape;
-        if (ObjColor != "" && ObjShape != "") { Obj.transform.position = Out.position; return; }
-
-        Vector3 ObjPos = Obj.transform.position;
-        if(Vector3.Magnitude(Inp1.position - ObjPos) <= 15)
+        ObjPos =_Transform.position;
+        if(Vector3.Magnitude(Inp1.position - ObjPos) <= 16)
         {
+            if (ObjColor != "None" && ObjShape != "None") { _Transform.position = Out.position; return; }
             if (Inp1Type == "color") 
             {
-                if (ObjShape != "") { Obj.transform.position = Out.position; return; }
+                if (ObjShape != "None") { _Transform.position = Out.position; return; }
                 else ColorList.Add(ObjColor);
             }
             else if (Inp1Type == "shape")
             {
-                if (ObjColor != "") { Obj.transform.position = Out.position; return; }
+                if (ObjColor != "") {_Transform.position = Out.position; return; }
                 else ShapeList.Add(ObjShape);
             }
+            _Transform.gameObject.SetActive(false);
         }
-        else if(Vector3.Magnitude(Inp2.position - ObjPos) <= 15)
+        else if(Vector3.Magnitude(Inp2.position - ObjPos) <= 16)
         {
             if (Inp2Type == "color")
             {
-                if (ObjShape != "") { Obj.transform.position = Out.position; return; }
+                if (ObjShape != "None") { _Transform.transform.position = Out.position; return; }
                 else ColorList.Add(ObjColor);
             }
             else if (Inp2Type == "shape")
             {
-                if (ObjColor != "") { Obj.transform.position = Out.position; return; }
+                if (ObjColor != "None") { _Transform.transform.position = Out.position; return; }
                 else ShapeList.Add(ObjShape);
             }
+            _Transform.gameObject.SetActive(false);
         }
-        Obj.SetActive(false);
+        
     }
 
     void SubWork()
     {
-        string Cnt1 = ColorList[0]; ColorList.RemoveAt(0);
-        string Cnt2 = ShapeList[0]; ShapeList.RemoveAt(0);
-        GameObject Cnt = Ins.CM.COM.ReturnObject(Cnt2,Cnt1);
+        Cnt1 = ColorList[0]; ColorList.RemoveAt(0);
+        Cnt2 = ShapeList[0]; ShapeList.RemoveAt(0);
+        Cnt = Ins.CM.COM.ReturnObject(Cnt2,Cnt1);
         if(CurM != null)
         {
             CurM.transform.GetChild(0).GetComponent<Image>().color = Ins.CM.ColorType[Cnt1];

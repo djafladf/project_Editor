@@ -105,10 +105,11 @@ public class Convey_Manager : MonoBehaviour
 
     IEnumerator ABC()
     {
+        var wfs = new WaitForSeconds(0.01f);
         for(int i = 0; i < 100; i++)
         {
             Attacked.color -= new Color(0, 0, 0, 0.04f);
-            yield return new WaitForSeconds(0.01f);
+            yield return wfs;
         }
     }
 }

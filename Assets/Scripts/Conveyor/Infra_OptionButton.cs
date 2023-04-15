@@ -10,6 +10,7 @@ public class Infra_OptionButton : MonoBehaviour
     public Color AfColor;
     Color BfColor;
     Infra_Option IO;
+    Image image;
 
     private void Awake()
     {
@@ -17,20 +18,21 @@ public class Infra_OptionButton : MonoBehaviour
         MyUi.ButtonInit(GetComponent<EventTrigger>(), OnPointer, OutPointer, ClickPointer);
         BfColor = GetComponent<Image>().color;
         IO = transform.parent.gameObject.GetComponent<Infra_Option>();
+        image = GetComponent<Image>();
     }
     void OnPointer(PointerEventData data)
     {
-        GetComponent<Image>().color = AfColor;
+        image.color = AfColor;
         IO.OnOption = true;
     }
     void OutPointer(PointerEventData data)
     {
-        GetComponent<Image>().color = BfColor;
+        image.color = BfColor;
         IO.OnOption = false;
     }
     void ClickPointer(PointerEventData data)
     {
-        GetComponent<Image>().color = BfColor;
+        image.color = BfColor;
         switch (name)
         {
             case "Rotate":

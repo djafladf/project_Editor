@@ -30,10 +30,14 @@ public class Infra_Goal : MonoBehaviour
         CM = GetComponent<Installation>().CM;
     }
 
-    public void JudgeObj(GameObject _A)
+    /// <summary>
+    /// Object와 목표가 동일한지 판단
+    /// </summary>
+    /// <param name="_color">Object.color</param>
+    /// <param name="_shape">Object.shape</param>
+    public void JudgeObj(string _color, string _shape)
     {
-        Convey_Object Cnt = _A.GetComponent<Convey_Object>();
-        if(Cnt.color == ColorG && Cnt.shape == ShapeG)
+        if(_color == ColorG && _shape == ShapeG)
         {
             CurGoal++;
             if (CurM != null) CurM.transform.GetChild(1).GetComponent<TMP_Text>().text = $"{CurGoal} / {Goal}";
@@ -42,7 +46,6 @@ public class Infra_Goal : MonoBehaviour
         {
             CM.Errorr();
         }
-        _A.SetActive(false);
     }
 
     void OnPointer(PointerEventData Data)

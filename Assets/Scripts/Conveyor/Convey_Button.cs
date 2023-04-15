@@ -13,10 +13,18 @@ public class Convey_Button : MonoBehaviour
     public Image image;
     float cnt = 1;
 
+    Convey_Button a1;
+    Convey_Button a2;
+
     private void Awake()
     {
         image = GetComponent<Image>();
         MyUi.ButtonInit(GetComponent<EventTrigger>(),OnPointer, OutPointer,Click);
+        if(name == "RollBack")
+        {
+            a1 = transform.parent.GetChild(1).GetComponent<Convey_Button>();
+            a2 = transform.parent.GetChild(2).GetComponent<Convey_Button>();
+        }
     }
 
     void OnPointer(PointerEventData Data)
@@ -59,8 +67,8 @@ public class Convey_Button : MonoBehaviour
         }
         else
         {
-            if (Time.timeScale == 2) transform.parent.GetChild(1).GetComponent<Convey_Button>().Click(null);
-            if (Time.timeScale == 0) transform.parent.GetChild(2).GetComponent<Convey_Button>().Click(null);
+            if (Time.timeScale == 2) a1.Click(null);
+            if (Time.timeScale == 0) a2.Click(null);
             Time.timeScale = 1;
             CM.RollBack();
         }

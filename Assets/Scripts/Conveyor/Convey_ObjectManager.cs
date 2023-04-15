@@ -8,6 +8,8 @@ public class Convey_ObjectManager : MonoBehaviour
     public Convey_Manager CM;
     public Dictionary<string, List<GameObject>> Objects = new Dictionary<string, List<GameObject>>();
 
+    Convey_Object CntObj;
+
 
     private void Awake()
     {
@@ -49,14 +51,9 @@ public class Convey_ObjectManager : MonoBehaviour
             if (!a.activeSelf)
             {
                 a.SetActive(true);
-                a.GetComponent<Convey_Object>().color = _Color;
-                a.GetComponent<Convey_Object>().shape = _Shape;
-                if (_Color != "None")
-                {
-                    if(_Shape != "None") a.GetComponent<SpriteRenderer>().color = CM.ColorType[_Color];
-                    else a.transform.GetChild(0).GetComponent<SpriteRenderer>().color = CM.ColorType[_Color];
-                }
-                else a.GetComponent<SpriteRenderer>().color = Color.white;
+                CntObj = a.GetComponent<Convey_Object>();
+                if (_Color != "None") CntObj.ChangeInf(_Color, _Shape, CM.ColorType[_Color]);
+                else CntObj.ChangeInf(_Color, _Shape, Color.white);
                 return a;
             }
         }

@@ -94,23 +94,31 @@ public class Infra_Classifier : MonoBehaviour
         }
     }
 
-    public void Classify(GameObject Inp)
+    /// <summary>
+    /// 분류 전 Deque에 삽입
+    /// </summary>
+    /// <param name="_Color">Object.color</param>
+    /// <param name="_Shape">Object.shape</param>
+    /// <param name="_Transform">Object.transform</param>
+    public void Classify(string _Color,string _Shape,Transform _Transform)
     {
-        if (Vector3.Magnitude(Inp.transform.position - transform.GetChild(0).position) > 15) return;
-        InpQueue.Add(new Tuple<string, string>(Inp.GetComponent<Convey_Object>().color,Inp.GetComponent<Convey_Object>().shape));
-        Inp.SetActive(false);
+        if (Vector3.Magnitude(_Transform.position - transform.GetChild(0).position) > 16) return;
+        InpQueue.Add(new Tuple<string, string>(_Color,_Shape));
+        _Transform.gameObject.SetActive(false);
     }
 
     IEnumerator WorkGap()
     {
+        
+        Tuple<string, string> CurWork;
+        string c = "";
+        var wfs = new WaitForSeconds(0.5f);
         while (true)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return wfs;
             if (InpQueue.Count == 0 || !Ins.OnWork) { continue; }
-            var CurWork = InpQueue[0]; InpQueue.RemoveAt(0);
+            CurWork = InpQueue[0]; InpQueue.RemoveAt(0);
             GameObject cnt = Ins.CM.COM.ReturnObject(CurWork.Item2,CurWork.Item1);
-
-            string c = "";
             if (CurType == "Color") c = CurWork.Item1;
             else if (CurType == "Shape") c = CurWork.Item2;
             if (CurDetail[0] == c) cnt.transform.position = Out1.position;

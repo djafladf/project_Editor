@@ -18,6 +18,8 @@ public class Installation : MonoBehaviour
     public Convey_Manager CM;
 
     public bool TouchAble = true;
+
+    GameObject Cnt;
     void Awake()
     {
         if (GetComponent<EventTrigger>() == null) gameObject.AddComponent<EventTrigger>();
@@ -33,9 +35,10 @@ public class Installation : MonoBehaviour
 
     IEnumerator ConsumePower()
     {
+        var wtf = new WaitForSeconds(1);
         while (true)
         {
-            yield return new WaitForSeconds(1);
+            yield return wtf;
             if (!CM.IsPlaying) continue;
             if (CM.Power <= 0) OnWork = false;
             else OnWork = true;
@@ -51,7 +54,7 @@ public class Installation : MonoBehaviour
 
     public void OpenSetting()
     {
-        GameObject Cnt = Instantiate(Setting, transform.parent);
+        Cnt = Instantiate(Setting, transform.parent);
         if (type == 1)   // 분류기일때
             GetComponent<Infra_Classifier>().InitSetting(Cnt);
         Cnt.transform.position = transform.position;

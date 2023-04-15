@@ -23,11 +23,15 @@ public class Infra_Power : MonoBehaviour
     {
         StartCoroutine(Work());
     }
-    public void AddFuel(GameObject _A)
+    /// <summary>
+    /// Object가 Shape값을 가지면 Fuel을 20 추가, Color값을 가지면 Fuel을 20 추가.(중복 적용)
+    /// </summary>
+    /// <param name="_Color">Object.color</param>
+    /// <param name="_Shape">Object.shape</param>
+    public void AddFuel(string _Color, string _Shape)
     {
-        if (_A.GetComponent<Convey_Object>().shape != "") ChangeFuel(20);
-        if (_A.GetComponent<Convey_Object>().color != "") ChangeFuel(20);
-        _A.SetActive(false);
+        if (_Color != "") ChangeFuel(20);
+        if (_Shape != "") ChangeFuel(20);
     }
     void ChangeFuel(int ch) 
     {
@@ -74,9 +78,10 @@ public class Infra_Power : MonoBehaviour
 
     IEnumerator Work()
     {
+        var wfs = new WaitForSeconds(0.5f);
         while (true)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return wfs;
             if (Fuel != 0) 
             {
                 if (Fuel < 10)

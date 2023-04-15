@@ -40,6 +40,7 @@ public class InstallO_C : MonoBehaviour
         float G = 0;
         float dx;
         Transform Parent = transform.parent;
+        var wfs = new WaitForSeconds(0.01f);
         if (IsOpen)
         {
             G = 1000;
@@ -55,7 +56,7 @@ public class InstallO_C : MonoBehaviour
         {
             Vector3 VA = new Vector3(Parent.transform.position.x+dx * 80, Parent.transform.position.y,Parent.transform.position.z);
             Parent.transform.position = VA;
-            yield return new WaitForSeconds(0.01f);
+            yield return wfs;
         }
         yield break;
     }

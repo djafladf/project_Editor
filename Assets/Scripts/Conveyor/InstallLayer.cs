@@ -9,18 +9,20 @@ public class InstallLayer : MonoBehaviour
     public Sprite bf;
     public Sprite af;
     public bool IsInstall = false;
+    Image image;
     void Awake()
     {
         if (GetComponent<EventTrigger>() == null) gameObject.AddComponent<EventTrigger>();
         EventTrigger eventTrigger = GetComponent<EventTrigger>();
         MyUi.ButtonInit(eventTrigger, OnPointer, OutPointer, null);
+        image = GetComponent<Image>();
     }
     void OnPointer(PointerEventData data)
     {
         if (!IsInstall)
         {
             IM.CurLay = gameObject;
-            GetComponent<Image>().sprite = af;
+            image.sprite = af;
         }
     }
 
@@ -29,7 +31,7 @@ public class InstallLayer : MonoBehaviour
         if (!IsInstall && IM.cnt)
         {
             IM.CurLay = null;
-            GetComponent<Image>().sprite = bf;
+            image.sprite = bf;
         }
     }
     public void DestroyInstall()

@@ -8,6 +8,7 @@ public class ConveyTest : MonoBehaviour
     public Convey_Manager CM;
     public bool working;
     float MakingInterv = 1;
+    GameObject cnt;
 
     int i = 0;
     public void StopWork()
@@ -48,13 +49,15 @@ public class ConveyTest : MonoBehaviour
     }*/
     IEnumerator MakeObj()
     {
+        var wfs = new WaitForSeconds(MakingInterv);
+        string x; string y;
         while (true)
         {
-            yield return new WaitForSeconds(MakingInterv);
+            yield return wfs;
             if (!working) continue;
-            string x = CM.ColorNames[Random.Range(0, CM.ColorNames.Count)];
-            string y = CM.ShapeNames[Random.Range(0, CM.ShapeNames.Count)];
-            GameObject cnt = CM.COM.ReturnObject(y, x);
+            x = CM.ColorNames[Random.Range(0, CM.ColorNames.Count)];
+            y = CM.ShapeNames[Random.Range(0, CM.ShapeNames.Count)];
+            cnt = CM.COM.ReturnObject(y, x);
             cnt.transform.position = new Vector3(transform.position.x + 50, transform.position.y, transform.position.z);
             if (++i == 1000) break;
         }
