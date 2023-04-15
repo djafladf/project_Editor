@@ -51,7 +51,11 @@ public class Convey_ObjectManager : MonoBehaviour
                 a.SetActive(true);
                 a.GetComponent<Convey_Object>().color = _Color;
                 a.GetComponent<Convey_Object>().shape = _Shape;
-                if (_Color != "None") a.GetComponent<SpriteRenderer>().color = CM.ColorType[_Color];
+                if (_Color != "None")
+                {
+                    if(_Shape != "None") a.GetComponent<SpriteRenderer>().color = CM.ColorType[_Color];
+                    else a.transform.GetChild(0).GetComponent<SpriteRenderer>().color = CM.ColorType[_Color];
+                }
                 else a.GetComponent<SpriteRenderer>().color = Color.white;
                 return a;
             }
