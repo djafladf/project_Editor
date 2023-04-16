@@ -1,7 +1,8 @@
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using TreeEditor;
+using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 
 public class InstallIcon : MonoBehaviour
 {
@@ -9,12 +10,17 @@ public class InstallIcon : MonoBehaviour
     public InstallO_C OC;
     public GameObject Inp;
     public GameObject Inp_Img;
-    public GameObject Infras;
+    public Transform Infras;
     public Color Af;
+    public int MaxInstall;
+
     Color bf;
 
-    GameObject Oup = null;
+    GameObject Oup;
     Vector3 AnchorGap;
+    GameObject[] Pools;
+
+    bool j;
 
     private void Awake()
     {
@@ -25,6 +31,16 @@ public class InstallIcon : MonoBehaviour
         MyUi.AddEvent(eventTrigger, EventTriggerType.Drag, DragPointer);
         MyUi.AddEvent(eventTrigger, EventTriggerType.EndDrag, DragEnd);
         bf = GetComponent<Image>().color;
+
+        Oup = Instantiate(Inp_Img, transform.parent.parent.parent);
+        Oup.SetActive(false);
+
+        Pools = new GameObject[MaxInstall];
+        for (int i = 0; i < MaxInstall; i++)
+        {
+            Pools[i] = Instantiate(Inp, Infras);
+            Pools[i].SetActive(false);
+        }
     }
 
     void OnPointer(PointerEventData data)
@@ -39,8 +55,7 @@ public class InstallIcon : MonoBehaviour
 
     void DragOn(PointerEventData Data)
     {
-        Oup = Instantiate(Inp_Img, transform.parent.parent.parent);
-        Oup.transform.SetAsFirstSibling();
+        Oup.SetActive(true);
         IM.gameObject.SetActive(true);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); mousePos.z = 0;
         Oup.transform.position = mousePos;
@@ -52,18 +67,31 @@ public class InstallIcon : MonoBehaviour
     }
     void DragEnd(PointerEventData data)
     {
-        Destroy(Oup);
+        Oup.SetActive(false);
+        j = false;
         if(IM.CurLay != null)
         {
             IM.cnt = false;
-            Oup = Instantiate(Inp, Infras.transform);
-            Oup.transform.position = IM.CurLay.transform.position;
-            Oup.GetComponent<Installation>().InLayer = IM.CurLay;
-            IM.CurLay.GetComponent<InstallLayer>().OutPointer(null);
-            IM.CurLay.GetComponent<InstallLayer>().IsInstall = true;
-            IM.CurLay.SetActive(false);
-            IM.CurLay = null;
-            IM.cnt = true;
+            foreach(var _A in Pools)
+            {
+                if (!_A.activeSelf)
+                {
+                    _A.SetActive(true);
+                    _A.GetComponent<Installation>().InLayer = IM.CurLay;
+                    _A.transform.position = IM.CurLay.transform.position;
+                    IM.CurLay.GetComponent<InstallLayer>().OutPointer(null);
+                    IM.CurLay.GetComponent<InstallLayer>().IsInstall = true;
+                    IM.CurLay.SetActive(false);
+                    IM.CurLay = null;
+                    IM.cnt = true;
+                    j = true;
+                    break;
+                }
+            }
+            if (!j)
+            {
+                Debug.Log("설치 가능 용량 초과!");
+            }
         }
         IM.gameObject.SetActive(false);
     }

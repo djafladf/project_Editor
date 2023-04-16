@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class InstallManager : MonoBehaviour
 {
+    [HideInInspector]
     public GameObject CurLay;
+    [HideInInspector]
     public bool cnt = true;    // 이상한 곳에 설치했을 때 마지막 layer에 설치되는 버그 방지용
+
 }

@@ -46,12 +46,6 @@ public class Installation : MonoBehaviour
         }
     }
 
-
-    public void DelSelf()
-    {
-        Destroy(gameObject);
-    }
-
     public void OpenSetting()
     {
         Cnt = Instantiate(Setting, transform.parent);

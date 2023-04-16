@@ -29,6 +29,7 @@ public class Infra_Combine : MonoBehaviour
     string Cnt2;
     GameObject Cnt;
     Vector3 ObjPos;
+    bool FirstInstall = true;
 
     private void Awake()
     {
@@ -36,9 +37,25 @@ public class Infra_Combine : MonoBehaviour
         MyUi.ButtonInit(GetComponent<EventTrigger>(), OnPointer, OutPointer, null);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        StartCoroutine(Work());
+        if (FirstInstall) FirstInstall = false;
+        else
+        {
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+            ColorList.Clear(); ShapeList.Clear();
+            Inp1Type = "color"; Inp2Type = "shape";
+            StartCoroutine(Work());
+        }
+    }
+    private void OnDisable()
+    {
+        if (!FirstInstall)
+        {
+            StopAllCoroutines();
+            CurM = null;
+            MCnt = false;
+        }
     }
 
     void OnPointer(PointerEventData Data)

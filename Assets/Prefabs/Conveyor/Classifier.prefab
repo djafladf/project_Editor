@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -399,10 +399,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13181b628e04ef458ca5e108d073e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BfInfra: []
-  AfInfra: []
   IsInstalled: 0
   OnWork: 1
+  Manual: 0
   type: 1
   InLayer: {fileID: 0}
   Setting: {fileID: 6728918109223493463, guid: dae4434b33d2ba7448f70f15f76a09e1, type: 3}
@@ -423,7 +422,6 @@ MonoBehaviour:
   Out1: {fileID: 8763338096156078500}
   Out2: {fileID: 5229522449749151834}
   Out3: {fileID: 8116414360214300091}
-  InpQueue: []
 --- !u!61 &7910395152804775866
 BoxCollider2D:
   m_ObjectHideFlags: 0

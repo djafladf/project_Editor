@@ -39,7 +39,7 @@ public class Infra_OptionButton : MonoBehaviour
                 IO.Clicked.transform.Rotate(0, 0, -90);
                 break;
             case "Delete":
-                IO.Clicked.GetComponent<Installation>().DelSelf();
+                IO.Clicked.SetActive(false);
                 break;
             case "Detail":
                 IO.Clicked.GetComponent<Installation>().OpenSetting();

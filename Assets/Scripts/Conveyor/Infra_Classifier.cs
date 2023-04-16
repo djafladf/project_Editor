@@ -2,11 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using TreeEditor;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class Infra_Classifier : MonoBehaviour
 {
@@ -30,20 +27,46 @@ public class Infra_Classifier : MonoBehaviour
     public Transform Out3;
     
     Installation Ins;
+    bool FirstInstall = true;
 
     private void Awake()
     {
         Ins = GetComponent<Installation>();
-
-        Options["Color"] = new List<string>(Ins.CM.ColorType.Keys){ "Cnt" };
-        Options["Shape"] = new List<string>(Ins.CM.ShapeType.Keys){ "Cnt" };
-        for (int i = 0; i < 3; i++) CurDetail.Add(Options["Color"][i]);
+        
     }
-
     private void Start()
     {
-        StartCoroutine(WorkGap());
+        Options["Color"] = new List<string>(Ins.CM.ColorNames) { "Cnt" };
+        Options["Shape"] = new List<string>(Ins.CM.ShapeNames) { "Cnt" };
     }
+
+    private void OnEnable()
+    {
+        if (FirstInstall)
+        {
+            FirstInstall = false;
+        }
+        else
+        {
+            CurType = "Color";
+            CurTypeBal = 0;
+            CurDetailVal[0] = 0; CurDetailVal[1] = 1; CurDetailVal[2] = 2;
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+            for (int i = 0; i < 3; i++) CurDetail.Add(Ins.CM.ColorNames[i]);
+            StartCoroutine(WorkGap());
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (!FirstInstall)
+        {
+            StopAllCoroutines();
+            CurDetail.Clear();
+            InpQueue.Clear();
+        }
+    }
+
     public void InitSetting(GameObject _Setting)
     {
         Setting = _Setting;

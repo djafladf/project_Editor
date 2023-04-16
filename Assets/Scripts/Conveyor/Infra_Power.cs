@@ -7,11 +7,13 @@ using UnityEngine.EventSystems;
 
 public class Infra_Power : MonoBehaviour
 {
-    int Fuel = 0;
+    int Fuel;
     public GameObject Message;
     GameObject CurM = null;
     Installation Ins;
     bool MCnt = false;
+
+    bool FirstInstall = true;
 
 
     private void Awake()
@@ -19,9 +21,21 @@ public class Infra_Power : MonoBehaviour
         Ins = GetComponent<Installation>();
         MyUi.ButtonInit(GetComponent<EventTrigger>(), OnPointer, OutPointer, null);
     }
-    private void Start()
+    private void OnEnable()
     {
-        StartCoroutine(Work());
+        Fuel = 0;
+        if (FirstInstall) FirstInstall = false;
+        else StartCoroutine(Work());
+    }
+    private void OnDisable()
+    {
+        if (!FirstInstall)
+        {
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+            StopAllCoroutines();
+            CurM = null;
+            MCnt = false;
+        }
     }
     /// <summary>
     /// Object가 Shape값을 가지면 Fuel을 20 추가, Color값을 가지면 Fuel을 20 추가.(중복 적용)

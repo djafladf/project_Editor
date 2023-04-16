@@ -421,8 +421,9 @@ MonoBehaviour:
   OC: {fileID: 1758694270}
   Inp: {fileID: 2869810185753325803, guid: c7d4d3c82fe45624e964ed0de30f39e1, type: 3}
   Inp_Img: {fileID: 2869810185753325803, guid: d2c532f59ea7c504880f4b252a4ac626, type: 3}
-  Infras: {fileID: 975237460}
+  Infras: {fileID: 975237461}
   Af: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+  MaxInstall: 70
 --- !u!1 &73173906
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,8 +758,9 @@ MonoBehaviour:
   OC: {fileID: 1758694270}
   Inp: {fileID: 5802032822619885875, guid: 0ec98a0c6ccaa994489e14840331ecc7, type: 3}
   Inp_Img: {fileID: 5802032822619885875, guid: cac25ae7d730c5940b8a1e3d358b4257, type: 3}
-  Infras: {fileID: 432860906}
+  Infras: {fileID: 432860907}
   Af: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+  MaxInstall: 5
 --- !u!114 &127884698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,8 +1441,9 @@ MonoBehaviour:
   OC: {fileID: 1758694270}
   Inp: {fileID: 7910395152804775860, guid: d5ab595dc94e3184da619aa8c181f97d, type: 3}
   Inp_Img: {fileID: 2869810185753325803, guid: 4368edcb67282d44e8b0f33adeb6907d, type: 3}
-  Infras: {fileID: 432860906}
+  Infras: {fileID: 432860907}
   Af: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+  MaxInstall: 5
 --- !u!114 &211074765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3115,8 +3118,9 @@ MonoBehaviour:
   OC: {fileID: 1758694270}
   Inp: {fileID: 2389492847678077743, guid: 5ebba382783e2d64c9347a1998d51dbb, type: 3}
   Inp_Img: {fileID: 2389492847678077743, guid: e4fb81afa861b154c8fe21d3711dc03f, type: 3}
-  Infras: {fileID: 432860906}
+  Infras: {fileID: 432860907}
   Af: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+  MaxInstall: 10
 --- !u!114 &625266851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3904,8 +3908,9 @@ MonoBehaviour:
   OC: {fileID: 1758694270}
   Inp: {fileID: 177243232095908049, guid: 2d560cd3f1c95e9479e704db7461efa7, type: 3}
   Inp_Img: {fileID: 177243232095908049, guid: 4fe9cb89449994045bbc5889eef0d94e, type: 3}
-  Infras: {fileID: 432860906}
+  Infras: {fileID: 432860907}
   Af: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+  MaxInstall: 5
 --- !u!114 &941771257
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -141,10 +141,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Inp: {fileID: 2249266560590258836}
   Out: {fileID: 3382747484121176754}
-  Obj1: {fileID: 298169937085434253, guid: 5862af4962d008a42980d1292a45c460, type: 3}
-  Obj2: {fileID: 298169937085434253, guid: 17c7a771faa670b409801ddfa23efcaf, type: 3}
-  Obj3: {fileID: 298169937085434253, guid: 1e775a4d9386f1346ac7489c9377b74e, type: 3}
-  NoneObj: {fileID: 952393911030791458, guid: 306e05904ad2373438b45540eeec6fdc, type: 3}
 --- !u!1 &3995419821627643643
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -281,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

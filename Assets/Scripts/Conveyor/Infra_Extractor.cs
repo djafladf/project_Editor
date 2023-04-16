@@ -13,13 +13,21 @@ public class Infra_Extractor : MonoBehaviour
 
     Installation Ins;
 
+    bool FirstInstall = true;
+
     private void Awake()
     {
         Ins = GetComponent<Installation>();
     }
-    private void Start()
+    private void OnEnable()
     {
-        StartCoroutine(Work());
+        if (FirstInstall) FirstInstall = false;
+        else
+        {
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+            ObjList.Clear();
+            StartCoroutine(Work());
+        }
     }
 
     /// <summary>

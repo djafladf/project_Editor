@@ -70,12 +70,10 @@ public class Convey_Manager : MonoBehaviour
         for(int i = 0; i < Rails.childCount; i++)
         {
             Rails.GetChild(i).gameObject.SetActive(false);
-            Destroy(Rails.GetChild(i).gameObject);
         }
         for(int i = 0; i < Etc.childCount; i++)
         {
             Etc.GetChild(i).gameObject.SetActive(false);
-            Destroy(Etc.GetChild(i).gameObject);
         }
     }
     public void PlayStart()
