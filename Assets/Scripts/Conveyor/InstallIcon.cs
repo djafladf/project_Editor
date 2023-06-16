@@ -56,7 +56,6 @@ public class InstallIcon : MonoBehaviour
     void DragOn(PointerEventData Data)
     {
         Oup.SetActive(true);
-        IM.gameObject.SetActive(true);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); mousePos.z = 0;
         Oup.transform.position = mousePos;
         StartCoroutine(OC.InstallOC());
@@ -93,6 +92,6 @@ public class InstallIcon : MonoBehaviour
                 Debug.Log("설치 가능 용량 초과!");
             }
         }
-        IM.gameObject.SetActive(false);
+
     }
 }

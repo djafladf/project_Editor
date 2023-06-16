@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+// TODO : 스테이지 별 랜덤 생성 변환
 public class ConveyTest : MonoBehaviour
 {
+    /** 
+      * 시작 지점에서 Object 생성(Test용)
+      */
     public Convey_Manager CM;
     public bool working;
     float MakingInterv = 1;

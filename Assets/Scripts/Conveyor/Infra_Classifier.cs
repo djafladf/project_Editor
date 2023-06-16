@@ -7,27 +7,35 @@ using UnityEngine.EventSystems;
 
 public class Infra_Classifier : MonoBehaviour
 {
+    /*
+     * 분류기의 작동을 담당 + Setting(InitSetting, DropChange, GetChange)도 일부분 포함
+     */
+
+
+    // Color, Shpae의  이름들을 담는 딕셔너리. 목록은 ConveyManager로부터 가져옴.
     Dictionary<string, List<string>> Options = new Dictionary<string, List<string>>();
 
-    string CurType = "Color";
+    string CurType = "Color";   // 현재 분류 Type
+
+    // Setting용
     int CurTypeBal = 0;
     List<string> CurDetail = new List<string>();
     int[] CurDetailVal = new int[] {0,1,2};
-
     TMP_Dropdown Type_D;
     TMP_Dropdown Out1_D;
     TMP_Dropdown Out2_D;
     TMP_Dropdown Out3_D;
     EventTrigger Apply;
     GameObject Setting;
+
     List<Tuple<string,string>> InpQueue = new List<Tuple<string,string>>();
 
-    public Transform Out1;
-    public Transform Out2;
-    public Transform Out3;
+    public Transform Out1;      // 출구 1
+    public Transform Out2;      // 출구 2
+    public Transform Out3;      // 출구 3
     
-    Installation Ins;
-    bool FirstInstall = true;
+    Installation Ins;           // Installation.cs
+    bool FirstInstall = true;   // 첫 Enable시(Pooling 될 때) 연산 제외용
 
     private void Awake()
     {
@@ -40,6 +48,9 @@ public class Infra_Classifier : MonoBehaviour
         Options["Shape"] = new List<string>(Ins.CM.ShapeNames) { "Cnt" };
     }
 
+    /// <summary>
+    /// Pool에서 꺼내질 때마다 초기화시킴.
+    /// </summary>
     private void OnEnable()
     {
         if (FirstInstall)
@@ -67,6 +78,10 @@ public class Infra_Classifier : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Setting 초기화
+    /// </summary>
+    /// <param name="_Setting">현재 Object의 Setting 설정용 Object</param>
     public void InitSetting(GameObject _Setting)
     {
         Setting = _Setting;
@@ -85,6 +100,10 @@ public class Infra_Classifier : MonoBehaviour
         MyUi.AddEvent(Apply, EventTriggerType.PointerClick, GetChange);
     }
 
+    /// <summary>
+    /// 현재 Setting Object의 Type 변경 시 Drop의 내용물을 초기화시킴.
+    /// </summary>
+    /// <param name="Ind">0 : Color, 1 : Shpae</param>
     void DropChange(int Ind)
     {
         string cnt = Type_D.options[Ind].text;
@@ -96,6 +115,10 @@ public class Infra_Classifier : MonoBehaviour
         Out3_D.AddOptions(Options[cnt]);
     }
     
+    /// <summary>
+    /// Setting에 적용한 내용을 실제 Infra에 적용시킴
+    /// </summary>
+    /// <param name="Data">포인터의 값이지만 이 함수에선 사용하지 않음.</param>
     public void GetChange(PointerEventData Data)
     {
         if (Out1_D.value != Out2_D.value && Out1_D.value != Out3_D.value && Out2_D.value != Out3_D.value)
@@ -130,9 +153,15 @@ public class Infra_Classifier : MonoBehaviour
         _Transform.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// 실제 작동 부분
+    /// 0.5초마다 1번의 작업을 수행하며
+    /// 현재 Que의 Object와 현재 Infra의 Type을 대조하여 1,2,3번 출구 중 한 곳으로 보냄.
+    /// Type이 맞지 않는 경우 무조건 3번으로 보냄.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator WorkGap()
     {
-        
         Tuple<string, string> CurWork;
         string c = "";
         var wfs = new WaitForSeconds(0.5f);

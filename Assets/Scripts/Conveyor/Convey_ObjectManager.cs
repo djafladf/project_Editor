@@ -5,17 +5,21 @@ using UnityEngine;
 
 public class Convey_ObjectManager : MonoBehaviour
 {
+    /**
+      * Object의 Pooling을 담당
+      */
     public Convey_Manager CM;
     public Dictionary<string, List<GameObject>> Objects = new Dictionary<string, List<GameObject>>();
 
     Convey_Object CntObj;
-
-
     private void Awake()
     {
         MakePool();
     }
 
+    /// <summary>
+    /// Object를 풀링할 Pool 생성
+    /// </summary>
     void MakePool()
     {
         for (int i = 0; i < CM.ShapeNames.Count; i++) 

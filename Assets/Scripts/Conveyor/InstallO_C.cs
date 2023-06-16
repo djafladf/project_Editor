@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class InstallO_C : MonoBehaviour
 {
+    /// <summary>
+    /// Infra 설치용 탭을 열고 닫는 버튼의 기능을 정의(좌측 하단의 삼각형)
+    /// </summary>
     public Color Af;
     Color bf;
     public bool IsOpen = false;
@@ -34,6 +37,9 @@ public class InstallO_C : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(InstallOC());
     }
+    /// <summary>
+    /// 탭을 열고 닫는 연출을 나타냄. 추후 다른 Object의 Touch와도 상호작용이 있어 public으로 선언.
+    /// </summary>
     public IEnumerator InstallOC()
     {
         GetComponent<RectTransform>().Rotate(0, 0, 180);

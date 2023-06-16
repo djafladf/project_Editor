@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 public class Infra_Goal : MonoBehaviour
 {
+    /// <summary>
+    /// 도착지점에 대한 정의
+    /// TODO : 난이도 별로 랜덤 생성.
+    /// </summary>
     public Sprite ShapeSprite;
     public Color Color;
     public string ShapeG;
@@ -59,6 +63,10 @@ public class Infra_Goal : MonoBehaviour
         StartCoroutine(EndMessage());
     }
 
+    /// <summary>
+    /// 현재 목표를 보여주는 Message
+    /// </summary>
+    /// <returns></returns>
     IEnumerator ShowMessage()
     {
         if (CurM == null)

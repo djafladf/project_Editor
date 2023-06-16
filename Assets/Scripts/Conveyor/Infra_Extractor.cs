@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Infra_Extractor : MonoBehaviour
 {
+    /// <summary>
+    /// 추출기의 작동을 정의
+    /// Object의 Shape와 Color를 분해해줌.
+    /// TODO : 현재 어떤 Object의 작업을 수행중인지 나타내는 Message 추가 예정
+    /// </summary>
     public Transform Inp;
     public Transform Out;
 
@@ -48,6 +53,10 @@ public class Infra_Extractor : MonoBehaviour
         _Transform.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Que의 Shape와 Color를 새 Object에 적용해서 Out으로 배출시킴.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Work()
     {
         Tuple<string, string> cnt;

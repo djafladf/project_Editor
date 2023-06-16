@@ -3,6 +3,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Text;
 
+
+/// <summary>
+/// 좌측 상단의 버튼들을 담당.
+/// </summary>
 public class Convey_Button : MonoBehaviour
 {
     public Sprite Normal;
@@ -37,6 +41,7 @@ public class Convey_Button : MonoBehaviour
     }
     public void Click(PointerEventData Data)
     {
+        // Speed 아이콘 클릭 시, 배속을 조절
         if(name == "Speed")
         {
             if (CM.IsPlaying == false) { CM.PlayStart(); Is_Click = true; }
@@ -51,6 +56,7 @@ public class Convey_Button : MonoBehaviour
                 Time.timeScale = 2;
             }
         }
+        // Stop 아이콘 클릭 시, 일시적으로 게임을 멈추거나 재개함.
         else if(name == "Stop")
         {
             if (Is_Click)
@@ -65,6 +71,7 @@ public class Convey_Button : MonoBehaviour
                 Time.timeScale = 0;
             }
         }
+        // RollBack 아이콘 클릭 시, 게임을 다시 시작함.
         else
         {
             if (Time.timeScale == 2) a1.Click(null);

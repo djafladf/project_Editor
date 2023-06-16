@@ -6,13 +6,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+
 public class Infra_Combine : MonoBehaviour
 {
-    public Transform Inp1;
-    public Transform Inp2;
-    public Transform Out;
+    /// <summary>
+    /// 병합기의 작동을 담당.
+    /// TODO : 얘도 Message 추가 예정
+    /// </summary>
+    public Transform Inp1;      // 입구 1
+        public Transform Inp2;      // 입구 2
+        public Transform Out;       // 출구
 
-    public GameObject Message;
+    public GameObject Message;  // Object에 마우스를 가져다 대면 나오는 창(현재 조합중인 목록)
 
     bool MCnt = false;
 
@@ -93,6 +98,7 @@ public class Infra_Combine : MonoBehaviour
         Destroy(CurM);
         CurM = null;
     }
+
     /// <summary>
     /// Combine 전 Object의 정보(Color or Shape) Deque에 저장
     /// Color와 Shape값 모두 보유 중(Not "None")이라면 바로 배출.
@@ -132,29 +138,27 @@ public class Infra_Combine : MonoBehaviour
             }
             _Transform.gameObject.SetActive(false);
         }
-        
     }
 
-    void SubWork()
-    {
-        Cnt1 = ColorList[0]; ColorList.RemoveAt(0);
-        Cnt2 = ShapeList[0]; ShapeList.RemoveAt(0);
-        Cnt = Ins.CM.COM.ReturnObject(Cnt2,Cnt1);
-        if(CurM != null)
-        {
-            CurM.transform.GetChild(0).GetComponent<Image>().color = Ins.CM.ColorType[Cnt1];
-            CurM.transform.GetChild(1).GetComponent<Image>().sprite = Ins.CM.ShapeType[Cnt2].GetComponent<SpriteRenderer>().sprite;
-        }
-        Cnt.transform.position = Out.position;
-    }
-
+    /// <summary>
+    /// 현재 Combine에 들어온 Color와 Shpae를 섞은 새로운 Object를 만들며 출구로 내보냄.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Work()
     {
         while (true)
         {
             yield return new WaitForSeconds(1);
             if (ColorList.Count == 0 || ShapeList.Count == 0 || !Ins.OnWork || !Ins.CM.IsPlaying) continue;
-            SubWork();
+            Cnt1 = ColorList[0]; ColorList.RemoveAt(0);
+            Cnt2 = ShapeList[0]; ShapeList.RemoveAt(0);
+            Cnt = Ins.CM.COM.ReturnObject(Cnt2, Cnt1);
+            if (CurM != null)
+            {
+                CurM.transform.GetChild(0).GetComponent<Image>().color = Ins.CM.ColorType[Cnt1];
+                CurM.transform.GetChild(1).GetComponent<Image>().sprite = Ins.CM.ShapeType[Cnt2].GetComponent<SpriteRenderer>().sprite;
+            }
+            Cnt.transform.position = Out.position;
         }
     }
 }
