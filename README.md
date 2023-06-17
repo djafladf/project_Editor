@@ -14,9 +14,12 @@
 #### 5. Unity 상단 중앙의 ▶️ 버튼 클릭
 + Hierachy창에 Untitled Scene으로 되어 있는 경우, Project의 Scenes 폴더에서 Branch명과 동일한 Scene을 실행시키면 됩니다.
 
-## Branch 간단 설명
+## Branch별 시연 영상
 #### Hanoi
-
+![Hanoi](https://github.com/Leeslave/project_Editor/assets/88094627/49fe3d55-4932-4ad2-98a6-1f40105246d5)
+#### Dodge
+![Dodge](https://github.com/Leeslave/project_Editor/assets/88094627/831d3efc-d43e-4777-bd33-71691518a3a1)
+#### Conveyor
 
 
 ## STACKS
