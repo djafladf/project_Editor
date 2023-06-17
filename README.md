@@ -19,7 +19,17 @@
 ![Hanoi](https://github.com/Leeslave/project_Editor/assets/88094627/49fe3d55-4932-4ad2-98a6-1f40105246d5)
 #### Dodge
 ![Dodge](https://github.com/Leeslave/project_Editor/assets/88094627/831d3efc-d43e-4777-bd33-71691518a3a1)
+#### Maze
+![Maze](https://github.com/Leeslave/project_Editor/assets/88094627/652c22be-565a-49af-a468-fedf21aecbc0)
 #### Conveyor
+![Conveyor](https://github.com/Leeslave/project_Editor/assets/88094627/4637f163-e421-4b1f-88c0-7be4f51e47c7)
+#### Contrast
++ 정보 조작
+
+![Manipulation](https://github.com/Leeslave/project_Editor/assets/88094627/ff305189-f914-44c8-bfd3-e19554c18b88)
++ 문서 위조(미완)
+
+![Contrast](https://github.com/Leeslave/project_Editor/assets/88094627/612a06b0-fa50-45c1-8d7e-a5a4f33382f8)
 
 
 ## STACKS
