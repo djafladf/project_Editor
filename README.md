@@ -12,7 +12,9 @@
 #### 4. Unity Hub에서 Clone 된 폴더(.git이 있는 최상단 폴더)를 Open
 ![image](https://github.com/Leeslave/project_Editor/assets/88094627/77516631-7804-469d-a8f1-f3a3d2d2f6b4)
 #### 5. Unity 상단 중앙의 ▶️ 버튼 클릭
+![image](https://github.com/Leeslave/project_Editor/assets/88094627/cfc5b4a6-a126-470c-b6a2-7dc28de97865)
 + Hierachy창에 Untitled Scene으로 되어 있는 경우, Project의 Scenes 폴더에서 Branch명과 동일한 Scene을 실행시키면 됩니다.
+![image](https://github.com/Leeslave/project_Editor/assets/88094627/102e07a3-5c07-489e-b33a-13217e00acf7)
 
 ## Branch별 시연 영상
 #### Hanoi
