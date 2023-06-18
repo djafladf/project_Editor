@@ -9,8 +9,8 @@
  GitHubDesktop이나, SourceTree사용을 추천드립니다.
 #### 3. Play하기 원하는 Branch로 전환
 
-#### 4. Unity Hub에서 Clone 된 폴더를 Open
-
+#### 4. Unity Hub에서 Clone 된 폴더(.git이 있는 최상단 폴더)를 Open
+![image](https://github.com/Leeslave/project_Editor/assets/88094627/77516631-7804-469d-a8f1-f3a3d2d2f6b4)
 #### 5. Unity 상단 중앙의 ▶️ 버튼 클릭
 + Hierachy창에 Untitled Scene으로 되어 있는 경우, Project의 Scenes 폴더에서 Branch명과 동일한 Scene을 실행시키면 됩니다.
 
